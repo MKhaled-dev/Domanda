@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<!-- Start Choice Important Question -->
+
+<section class="domanda-home-importantQ text-center" style="margin-top:10px">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul class="list-unstyled" >
+                    <li class="text-capitalize"><a href="{% url 'interestingQuestions' %}">interesting</a></li>
+                    <li class="text-capitalize"><a href="{% url 'trendingQuestion' %}">trending</a></li>
+                    <li class="text-capitalize"><a href="{% url 'searchweekly' 1 %}">week</a></li>
+                    <li class="text-capitalize"><a href="{% url 'searchmonthly' 0 %}">month</a></li>
+                    <li class="text-capitalize category-list">
+                        tags
+                        <i class="fas fa-sort-down"></i>
+                        <!-- Start Display Category Dropdown -->
+                        <div class="domanda-home-importantQ-category d-none">
+                            <ul class="list-unstyled text-capitalize">
+                                <li><a href="{% url 'searchbycategory' 'World' %}">world</a></li>
+                                <li><a href="{% url 'searchbycategory' 'Sport' %}">sport</a></li>
+                                <li><a href="{% url 'searchbycategory' 'Business' %}">business</a></li>
+                                <li><a href="{% url 'searchbycategory' 'Science' %}">science</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Choice Important Question -->
+
+<!-- Start Home Page Content -->
+
+<section class="domanda-home-content">
+    <div class="container">
+
+        <!-- Start head of Questions -->
+        <div class="row" style="margin: 50px 0 30px">
+            <div class="col align-self-start">
+                <p class="lead text-uppercase domanda-home-heading">top questions</p>
+            </div>
+            <div class="col align-self-end text-right">
+                <a href="{% url 'askQuestionPage' %}" class="text-capitalize text-center d-inline-block domanda-home-askQ">ask question</a>
+            </div>
+        </div>
+
+        <!-- Start Question Details -->
+        <div class="row">
+
+            {% for question in questions %}
+            <div class="col-sm-12 ">
+                <div class="domanda-home-questionDetails wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".25s">
+                    <a class="domanda-home-questionDetails-questionContent d-block" href="{% url 'getquestion' question.question_id %}">{{question.sub_content_home}}</a>
+                    <div class="row">
+                        <div class="col align-self-start">
+                            <div class="domanda-home-questionDetails-left">
+                                <ul class="list-unstyled">
+                                    {% for category in categories %}
+                                        {% if question.question_id == category.question.question_id  %}
+                                            <li>{{ category.categoryname }}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+
+                                {% if question.username.username != null %}
+                                    <span>asked on {{ question.date }} | {{ question.time }} <span>by {{question.username.username}}</span> </span>
+                                {% else %}
+                                    <span>asked on {{ question.date }} | {{ question.time }} by <span class="text-capitalize">deleted user</span> </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col align-self-end">
+                            <div class="domanda-home-questionDetails-right">
+                                <p class="text-capitalize"><span>{{ question.views }}</span> views</p>
+                                <p class="text-capitalize"><span>{{ question.num_answers }}</span> answers</p>
+                                <p class="text-capitalize"><span>{{ question.vote }}</span> votes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+                
+        </div>
+
+
+        <!-- Start Next & Previous -->
+        <div class="domanda-home-questionsControl">
+            <div class="row">
+               {% if displayed_questions > 8 %}
+                <div class="col align-self-start">
+                    <a href="{% url 'loadPreviousquestions' lastquestion.question_id  %}" class="btn previous_button">prev</a>
+                </div>
+                {% endif %}
+                
+                {% if displayed_questions != number_of_questions %}
+                <div class="col align-self-end text-right">
+                    <a href="{% url 'loadNextquestions' lastquestion.question_id %}" class="btn next_button">next</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- End Home Page Content -->
+
+{% endblock %}

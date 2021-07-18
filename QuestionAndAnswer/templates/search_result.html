@@ -1,0 +1,13 @@
+<ul class="list-unstyled">
+    {% for searchRes in SearchResult %}
+
+        <li style="font-size:17px;margin-bottom:4px">
+            {% if searchRes.title %}
+                <a href="{% url 'getquestion' searchRes.question_id  %}" class="nav-link d-block">{{ searchRes.title }}</a>
+            {% else %}
+                <a href="{% url 'userprofile' searchRes.username  %}" class="nav-link d-block">{{ searchRes.username }}</a>
+            {% endif %}
+        </li>
+    
+    {% endfor %}
+</ul>

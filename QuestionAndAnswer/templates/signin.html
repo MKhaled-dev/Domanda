@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Start Sign in content -->
+
+<section class="domanda-signin-content">
+    <div class="container">
+        <h1 class="text-uppercase text-center">the place where you can answer <br/> and get answer</h1>
+
+        <div class="row">
+            <div class="domanda-signin-form">
+                <h2 class="text-center">Your journey starts here</h2>
+                <h3 class="h1 text-center text-uppercase">sign in</h3>
+
+                <!-- Start Signin Form action="{% url 'login' %}"-->
+                <form method="post" action="{% url 'login' %}" class="signinForm">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <img src="{% static 'QuestionAndAnswer/images/User%20Male_52px.png' %}" width="25" height="25" />
+                                <input type="text" name="signin-username" class="signin_username form-control border border-light" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username" value="{{ current_username }}">
+                                <p style="color:#ffc4cd;margin-top:25px;margin-bottom:-25px;margin-left:10px" class="domanda-signin-form-alert-username wow shake" data-wow-duration="1s" data-wow-delay = "3s" ></p>
+                            </div>
+                            <div class="form-group">
+                                <img src="{% static 'QuestionAndAnswer/images/Password_52px.png' %}" width="25" height="25" />
+                                <input type="password" name="signin-pass" class="signin_pass form-control border border-light" aria-describedby="emailHelp" placeholder="Password" value="{{ current_pass }}">
+                                <p style="color:#ffc4cd;margin-top:25px;margin-bottom:-25px;margin-left:10px" class="domanda-signin-form-alert-pass wow shake" data-wow-duration="1s" data-wow-delay="3s"></p>
+                            </div>
+                            <div class="form-group form-check text-center">
+                                <!-- Check if user make checked for remember me -->
+                                {% if is_checked == True %}
+                                    <input type="checkbox" name="signin-rememberme" class="form-check-input text-capitalize" id="signin-remember" value="1" checked>
+                                {% else %}
+                                    <input type="checkbox" name="signin-rememberme" class="form-check-input text-capitalize" id="signin-remember" value="1">
+                                {% endif %}
+                                <label class="form-check-label text-capitalize" style="cursor: pointer" for="signin-remember">remember me</label>
+                            </div>
+
+                            <button type="submit" class="signin_submit btn btn-block text-uppercase border border-light">sign in</button>
+
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Forget pass OR Sign up -->
+                <div class="domanda-signin-email">
+                    <form method="POST" action="{% url 'forgetpassword' %}">
+                        {% csrf_token %}
+                        <a href="" class="text-capitalize d-block text-center">forget password ?</a>
+                        <input type="text" name="username" hidden />
+                    </form>
+                    <a href="{% url 'signupPage' %}" class="text-capitalize d-block text-center">don't have an account ?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Sign in content -->
+{% endblock %}

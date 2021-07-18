@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<!-- Start Achievements content -->
+
+<section class="domanda-achievement-content">
+    <div class="container">
+        <h2 class="text-capitalize text-sm-center text-md-left">achievements</h2>
+
+        <!-- Start achievement order -->
+        <div class="row">
+            {% for achievement, value in listOfAchievements %}
+                {% if value %}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="domanda-achievement-name">
+                            <p class="text-capitalize text-center">{{ achievement }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+<!-- End Achievements content -->
+
+{% endblock %}

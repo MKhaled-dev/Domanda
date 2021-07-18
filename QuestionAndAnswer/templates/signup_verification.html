@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="domanda-signup-verification">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-uppercase text-center">A verification code has been sent to your Email</h1>
+                <form action="{% url 'verifyAccount' %}" method="POST">
+                    {% csrf_token %}
+                    <label for="domanda-verifiy-code" class="text-capitalize d-block">verification code</label>
+                    <input type="text" class="form-cotrol" id="domanda-verifiy-code" name="signup_verification_code" />
+                    <input type="submit" class="text-capitalize" value="Verify"/>
+                    
+                    <p style="color:#ffc4cd;margin-top:10px;margin-left:10px" class="domanda-alert-verify wow shake" data-wow-duration="1s" data-wow-delay = "3s" ></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

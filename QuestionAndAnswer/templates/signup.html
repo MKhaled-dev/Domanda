@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Start Sign in content -->
+
+<section class="domanda-signup-content">
+    <div class="container">
+        <h1 class="text-uppercase text-center">the place where you can answer <br/> and get answer</h1>
+
+        <div class="row">
+            <div class="domanda-signup-form">
+                <h2 class="text-center">Your journey starts here</h2>
+                <h3 class="h1 text-center text-uppercase">sign up</h3>
+
+                <!-- Start Signup Form -->
+                <form action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <img src="{% static 'QuestionAndAnswer/images/User%20Male_52px.png' %}" width="25" height="25" />
+                                <input type="text" name="signup-username" class="form-control border border-light" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <img src="{% static 'QuestionAndAnswer/images/New%20Post_52px.png' %}" width="25" height="25" />
+                                <input type="email" name="signup-email" class="form-control border border-light" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <img src="{% static 'QuestionAndAnswer/images/Password_52px.png' %}" width="25" height="25" />
+                                <input type="password" name="signup-pass" class="form-control border border-light" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-block text-uppercase border border-light">sign up</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Forget pass OR Sign up -->
+                <div class="domanda-signup-email">
+                    <p class="lead text-center">By clicking "Sign up", you acknowledge that you have read our <a href="" style="color:#fff">terms of service</a>, <a href="" style="color:#fff">privacy policy</a> and <a href="" style="color:#fff">cookie policy</a> , and that your continued use of the website is subject to these policies.</p>
+                    <a href="{% url 'signinPage' %}" class="text-capitalize d-block text-center">Already have an account ?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- End Sign in content -->
+
+{% endblock %}

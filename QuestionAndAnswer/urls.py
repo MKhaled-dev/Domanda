@@ -1,0 +1,52 @@
+from django.urls import path
+from QuestionAndAnswer import views
+
+urlpatterns = [
+    # Urls Pages
+    path('about/', views.about, name="aboutPage"),
+    path('askQuestion/', views.ask_question, name="askQuestionPage"),
+    path('signin/', views.signin, name="signinPage"),
+    path('signup/', views.signup, name="signupPage"),
+    path('signupverification/', views.signup_verification, name = "signupverification"),
+    path('personalprofile/', views.profile, name="profilePage"),
+    path('achievements/', views.achievement, name="achievementsPage"),
+    path('notifications/<str:user_id>', views.notification, name="notificationPage"),
+    path('userprofile/<str:user_Id>/', views.user_profile, name = "userprofile"),
+
+
+    # Process of urls
+    path('help/', views.help, name = "help"),
+    path('register/', views.signup_process, name="register"),
+    path('login/', views.signin_process, name="login"),
+    path('verifyaccount/', views.verify_account, name = "verifyAccount"),
+    path('logout/', views.logout_process, name="logout"),
+    path('editprofile/', views.profile_save, name="editprofile"),
+    path('deleteprofile/<str:user_id>', views.profile_delete, name="deleteprofile"),
+    path('postquestion/<str:user_id>', views.post_question, name = "postquestion"),
+    path('question/<int:question_id>', views.get_question, name = "getquestion"),
+    path('loadnext/<int:index>', views.loadNext, name = "loadNextquestions"),
+    path('loadprev/<int:index>', views.loadPrev, name = "loadPreviousquestions"),
+    path('addanswer/<str:user_id>/<int:question_id>', views.post_answer, name = "addanswer"),
+    path('bestanswer/<int:answer_id>', views.best_answer, name = "bestAnswer"),
+    path('followuser/<str:user_followed>/<str:follower>', views.follow_user, name = "followuser"),
+    path('search/', views.search_titles, name = "searchTitle"),
+    path('searchwithevent/', views.search_titles_eventEnter, name = "searchTitlewithEvent"),
+    path('tunroffanswers/<int:question_id>', views.turn_off_on_answers, name = "turnOffAnswers"),
+    path('addComment/<str:user_id>', views.post_comment, name = "addNewComment"),
+    path('removefollower/<str:user_followed>/<str:follower>', views.unfollow_user, name = "unfollow"),
+    path('questionvote/<int:question_id>/<int:vote_up>', views.vote_question, name = "questionvote"),
+    path('likeanswer/<int:answer_id>', views.like_answer, name = "likeanswer"),
+    path('deletequestion/<int:questionID>', views.delete_question, name = "deletequestion"),
+    path('changetheme/<str:userid>', views.save_theme, name = "changetheme"),
+    path('alluser/<str:username_char>', views.all_user, name = "alluser"),
+    path('searchbycategory/<str:category_name>', views.get_questions_by_category, name = "searchbycategory"),
+    path('savequestion/<str:question_id>', views.saved_question, name = "savequestion"),
+    path('searchbyweek/<int:weekly>', views.weekly_monthly_questions, name = "searchweekly"),
+    path('searchbymonth/<int:weekly>', views.weekly_monthly_questions, name = "searchmonthly"),
+    path('addrating/', views.add_rating, name = "addrating"),
+    path('interesting/', views.interesting_questions, name = "interestingQuestions"),
+    path('trending/', views.Trending_questions, name = "trendingQuestion"),
+    path('forgetpassword/', views.forgot_password, name = "forgetpassword"),
+    path('chnagesitemode/', views.change_mode, name = "changesitemode"),
+    path('editquestion/<int:questionId>', views.edit_question, name = "editquestion"),
+]

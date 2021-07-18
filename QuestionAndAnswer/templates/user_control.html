@@ -1,0 +1,49 @@
+{% load static %}
+<!-- Start Notification of Home page -->
+
+{% if user.is_authenticated %}
+
+<section class="domanda-home-notify">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul class="list-unstyled text-center">
+                    <li><a href="{% url 'homePage' %}" data-toggle="tooltip" data-placement="top" title="Home"><i class="fas fa-home"></i></a></li>
+                    {% if user.users.notifiy_count == 0 %}
+                        <li data-toggle="tooltip" data-placement="top" title="Notifications"><a href="{% url 'notificationPage' user.username %}"><i class="fas fa-bell"></i></a></li>
+                    {% elif user.users.notifiy_count > 9 %}
+                        <li class="notifiy" data-notify="+9" data-toggle="tooltip" data-placement="top" title="Notifications"><a href="{% url 'notificationPage' user.username %}"><i class="fas fa-bell"></i></a></li>
+                    {% elif user.users.notifiy_count <= 9 %}
+                        <li class="notifiy" data-notify="{{ user.users.notifiy_count }}" data-toggle="tooltip" data-placement="top" title="Notifications"><a href="{% url 'notificationPage' user.username %}"><i class="fas fa-bell"></i></a></li>
+                    {% endif %}
+
+                    <li data-notify = "+9"><a href="" data-toggle="tooltip" data-placement="top" title="Chat"><i class="fas fa-comment"></i></a></li>
+
+                    {% if user.users.achievement_count == 0 %}
+                        <li><a href="{% url 'achievementsPage' %}" data-toggle="tooltip" data-placement="top" title="Achievements"><i class="fas fa-award"></i></a></li>
+                    {% elif user.users.achievement_count > 9 %}
+                        <li class="notifiy" data-notify="+9"><a href="{% url 'achievementsPage' %}" data-toggle="tooltip" data-placement="top" title="Achievements"><i class="fas fa-award"></i></a></li>
+                    {% elif user.users.achievement_count <= 9 %}
+                        <li class="notifiy" data-notify="{{ user.users.achievement_count }}"><a href="{% url 'achievementsPage' %}" data-toggle="tooltip" data-placement="top" title="Achievements"><i class="fas fa-award"></i></a></li>
+                    {% endif %}
+
+
+                    <li><a href="{% url 'aboutPage' %}" data-toggle="tooltip" data-placement="top" title="About"><i class="fas fa-info-circle"></i></a></li>
+                    <li><a href="{% url 'help' %}" data-toggle="tooltip" data-placement="top" title="Help"><i class="fas fa-question-circle"></i></a></li>
+                </ul>
+
+                <!--
+                    <img src="{% static 'QuestionAndAnswer/images/Icons/Home_50px.png' %}" alt="domanda-profile" width="55" height="55" data-toggle="tooltip" data-placement="top" title="Home" />
+                    <img src="{% static 'QuestionAndAnswer/images/Icons/Notification.png' %}" width="55" height="55" data-toggle="tooltip" data-placement="top" title="Notifications" />
+                    <img src="{% static 'QuestionAndAnswer/images/Icons/Prize.png' %}" width="55" height="55" data-toggle="tooltip" data-placement="top" title="Achievements" />
+                    <img src="{% static 'QuestionAndAnswer/images/Icons/Info_52px.png' %}" width="55" height="55" data-toggle="tooltip" data-placement="top" title="About" />
+                    <img src="{% static 'QuestionAndAnswer/images/Icons/Help.png' %}" width="55" height="55" data-toggle="tooltip" data-placement="top" title="Help" />
+                -->
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+
+<!-- End Notification of Home page -->

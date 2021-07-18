@@ -1,0 +1,1669 @@
+/*********************
+**********************
+**** Global Style ****
+**********************
+**********************/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #09191C;
+  -webkit-text-fill-color: #B2BFBF;
+  -webkit-box-shadow: 0 0 0px 1000px #09191C inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+::-webkit-scrollbar{width: 10px;}
+::-webkit-scrollbar-track{
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .7)
+}
+
+::-webkit-scrollbar-thumb:hover{background-color: rgba(0, 0, 0, .6)}
+
+body.body-background{
+    background: url('../images/new_domanda.png') no-repeat center fixed;
+    background-size: cover;
+    background-color: #0E2A34
+}
+
+/*Start Navbar*/
+
+.domanda-navbar .domanda-search{
+    position: absolute;
+    left: 35.9%;
+    top: 40px;
+}
+
+.domanda-navbar .domanda-search form{width: 600px;position: relative}
+@media(max-width: 767px){
+    .domanda-navbar .domanda-search form{width: auto}
+}
+@media(max-width: 900px){
+    .domanda-navbar .domanda-search{position: relative;top: 0;left: 0}
+}
+
+.domanda-navbar .domanda-search form input{
+    color: #B2BFBF;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-left: 21%
+}
+
+.domanda-navbar .domanda-search form input:focus{box-shadow: none}
+
+.domanda-navbar .domanda-search form input::placeholder{font-size: 17px;opacity: .5}
+
+.domanda-navbar .domanda-search form select{
+    width: 20%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 17px;
+    font-weight: bold;
+    opacity: 0.5;
+    background-color: transparent;
+    border: none
+}
+
+.domanda-navbar .domanda-search form select:focus{box-shadow: none}
+
+.domanda-navbar .domanda-search form button{
+    background: transparent;
+    display: inline-block;
+    border: none;
+    outline: none
+}
+
+.domanda-navbar .domanda-search form button i{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    color:whitesmoke;
+}
+
+.domanda-navbar .domanda-search .navbar-nav li{
+    margin-right: 30px;
+    font-size: 23px;
+}
+
+.domanda-navbar .domanda-search .navbar-nav li > a{color: #97B0B1;transition: .2s}
+.domanda-navbar .domanda-search .navbar-nav li > a:visited{color: #97B0B1}
+.domanda-navbar .domanda-search .navbar-nav li > a:hover{color: #658183}
+
+.domanda-navbar .domanda-list{margin-left: 55px;margin-top: -30px;font-weight: bold}
+
+.domanda-navbar .domanda-search .domanda-search-result{
+    width: 100%;
+    max-height: 500px;
+    height: auto;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position: absolute;
+    top: 68%;
+    overflow-y: scroll
+}
+
+.domanda-navbar .domanda-search .domanda-search-result ul li a:hover{background-color:  rgba(255, 255, 255, .1)}
+ 
+.domanda-navbar .domanda-autho a{
+    min-width: 100px;
+    margin-right: 15px;
+    margin-top: 0;
+    background-color: #09191C;
+    color: #fff;
+    border: 1px solid rgba(159, 198, 58, .7)
+}
+
+.domanda-navbar .domanda-autho a:hover{background-color: rgba(0.04, 0.10, 0.11, .3)}
+
+.domanda-navbar .domanda-home-notify-userContent{
+    width: 130px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu{
+    top: 130%;
+    left: -300px;
+    width: 370px;
+}
+
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu::before{
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 86%;
+    border-width: 15px 15px 15px 15px;
+    border-style: solid;
+}
+
+.domanda-navbar .domanda-home-notify-userContent .domanda-home-notify-userContent-img{border-radius: 50%;transition: .2s}
+.domanda-navbar .domanda-home-notify-userContent .domanda-home-notify-userContent-img img{border-radius: 50%;transition: .2s}
+
+.domanda-navbar .domanda-home-notify-userContent .domanda-home-notify-userContent-img:hover,
+.domanda-navbar .domanda-home-notify-userContent .domanda-home-notify-userContent-img img:hover{border-radius: 30%}
+
+.domanda-navbar .domanda-home-notify-userContent .dropdown-divider{border-color: rgba(0,0,0,.3)}
+
+.domanda-navbar .domanda-home-notify-userContent .domanda-switch-mode input[type = "checkbox"]{
+    -webkit-appearance : none;
+    height: 25px;
+    width: 55px;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    outline: none
+}
+
+.domanda-navbar .domanda-home-notify-userContent .domanda-switch-mode input[type = "checkbox"]::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: .4s
+}
+
+.domanda-navbar .domanda-home-notify-userContent .domanda-switch-mode input[type = "checkbox"]:checked::before{
+    left: 32px;
+    background-color: #09191C
+}
+
+/*End Navbar*/
+
+/*********************
+**********************
+**** About Page ******
+**********************
+**********************/
+
+/*Start about content*/
+.domanda-about-content{
+    padding: 60px 0;
+    overflow: hidden
+}
+
+.domanda-about-content .domanda-about-video{width: 100%;}
+
+.domanda-about-content .domanda-about-video video{width: 100%;border: 6px solid #000}
+
+.domanda-about-content .domanda-about-text{
+    padding: 60px 0;
+    color: #FFEFD2
+}
+
+.domanda-about-content .domanda-about-text h1::first-letter{font-size: 100px}
+
+.domanda-about-content .domanda-about-text p:first-of-type{
+    font-size: 25px;
+    line-height: 2.1;
+    padding-top: 20px
+}
+
+.domanda-about-content .domanda-about-text p:last-of-type{color: #fff;font-size: 19px;letter-spacing: 1px}
+/*End about content*/
+
+
+/*********************
+**********************
+**** Profile Page ****
+**** Home Page *******
+**********************
+**********************/
+
+
+/*Start Profile header*/
+
+.domanda-profile-notify,
+.domanda-home-notify{
+    margin-bottom: 10px;
+}
+
+.domanda-profile-notify ul,
+.domanda-home-notify ul{margin: 0}
+
+.domanda-profile-notify ul li,
+.domanda-home-notify ul li{
+    display: inline-block;
+    height: 85px;
+    width: 100px;
+    position: relative;
+}
+.domanda-home-notify ul li a{
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: -5px
+}
+
+.domanda-home-notify ul li a i{
+    font-size: 50px;
+    margin-top: 27px;
+    text-align: center;
+}
+
+.domanda-profile-notify ul li a{margin-top: 15px;transition: .4s}
+
+@media(max-width: 767px){
+    .domanda-profile-notify ul li ,
+    .domanda-profile-notify ul li img,
+    .domanda-home-notify ul li,
+    .domanda-home-notify ul li a{
+        height: 50px;
+        width: 50px;
+        margin-right: 5px;
+        margin-top: -4px;
+        padding: 5px
+    }
+}
+
+.domanda-profile-notify ul li:nth-of-type(2)::before,
+.domanda-profile-notify ul li:nth-of-type(3)::before,
+
+.domanda-home-notify ul li.notifiy:nth-of-type(2)::before,
+.domanda-home-notify ul li:nth-of-type(3)::before,
+
+.domanda-home-notify ul li.notifiy:nth-of-type(4)::before{
+    content: attr(data-notify);
+    position: absolute;
+    top: 44px;
+    left: 55px;
+    width: 25px;
+    height: 25px;
+    color: #fff;
+    background-color: #d03939;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 999
+}
+
+
+@media(max-width: 767px){
+    .domanda-profile-notify ul li:nth-of-type(2)::before,
+    .domanda-profile-notify ul li:nth-of-type(3)::before,
+    .domanda-home-notify ul li:nth-of-type(2)::before,
+    .domanda-home-notify ul li:nth-of-type(3)::before{
+        top: 35px;
+        left: 30px;
+    }
+}
+
+/*End Profile header*/
+
+
+
+/*Start Profile Content*/
+
+.domanda-profile-content{
+    padding: 50px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.domanda-profile-content .domanda-profile-follow{
+    position: absolute;
+    top: 73px;
+    right: 4%;
+    width: 130px;
+    background-color: #09191C;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 19px
+}
+
+.domanda-profile-content .domanda-profile-img{
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin: 63px auto 0;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.domanda-profile-content .domanda-profile-img a{display: none}
+.domanda-profile-content .domanda-profile-img input{display: none}
+.domanda-profile-content .domanda-profile-img label{
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    width: 100%;
+    padding: 5;
+    background-color: rgba(0,0,0,.6);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    text-transform: capitalize;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    transition: .3s
+}
+
+.domanda-profile-content .domanda-profile-img:hover label{bottom: -6px}
+
+.domanda-profile-content .domanda-profile-info label{
+    color: #61797B;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: sans-serif
+}
+
+.domanda-profile-content .domanda-profile-info input{
+    font-size: 18px;
+    border-radius: 10px;
+    margin-bottom: 30px
+}
+
+
+.domanda-profile-content .domanda-profile-about h3{color: #61797B;margin-top: 0}
+
+.domanda-profile-content .domanda-profile-about li{
+    display: inline-block;
+    font-size: 20px;
+    color: whitesmoke;
+    margin-right: 10px;
+    cursor: pointer
+}
+
+.domanda-profile-content .domanda-profile-about textarea{
+    outline: none;
+    resize: none;
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 60px;
+    min-height: 300px
+}
+
+
+.domanda-profile-content h3{color: #61797B }
+
+.domanda-profile-content .domanda-profile-links{position: relative}
+
+.domanda-profile-content .domanda-profile-links span{
+    margin-bottom: 10px;
+    display: block;
+    font-size: 17px;
+    font-weight: bold
+}
+
+.domanda-profile-content .domanda-profile-links input{
+    background-color: #09191C;
+    color: #B2BFBF;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding-left: 45px;
+    outline: none
+}
+
+.domanda-profile-content .domanda-profile-links i{
+    position: absolute;
+    top: 45px;
+    left: 15px;
+}
+
+
+.domanda-profile-content .domanda-profile-career input[type="radio"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    width: 140px;
+    height: 50px;
+    padding: 10px;
+    color: #262626;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.domanda-profile-content .domanda-profile-career input[type="radio"].active-btn{
+    background-color: #09191C;
+    color: #fff;
+}
+
+.domanda-profile-content .domanda-profile-career input[type="radio"]::before{content: attr(data-value)}
+
+
+.domanda-profile-content .domanda-profile-displayedCareer span{font-size: 17px;font-weight: bold;margin-top: -15px;margin-bottom: 10px}
+
+.domanda-profile-content .domanda-profile-displayedCareer input{
+    width: 46%;
+    padding: 7px;
+    padding-right: 5px;
+    border-radius: 10px;
+    outline: none
+}
+
+
+.domanda-profile-content .domanda-profile-displayedCareer .domanda-profile-displayedCareer-comma{
+    width: 45px;
+    height: 45px;
+    padding: 10px 0;
+    background-color: #09191C;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.domanda-profile-content .domanda-profile-rating{
+    width: 80%;
+}
+.domanda-profile-content .domanda-profile-rating:focus{box-shadow: none}
+
+.domanda-profile-content .domanda-profile-rating-values input{
+    width: 60%;
+    border: 1px solid #fff;
+    outline: none;
+}
+
+.domanda-profile-content .domanda-profile-actions{
+    margin: 80px 0 5px
+}
+
+.domanda-profile-content .domanda-profile-actions input,
+.domanda-profile-content .domanda-profile-actions a{
+    width: 150px;
+    color: #B2BFBF;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.domanda-profile-content .domanda-profile-actions input:first-of-type{background-color: #044146}
+.domanda-profile-content .domanda-profile-actions input:last-of-type{background-color: #09191C}
+
+.domanda-profile-allContents > section:not(#domanda-profile-content){display: none}
+
+
+.domanda-profile-content .domanda-profile-content-Achievements{
+    width: 14%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    background: #09191C;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px
+}
+
+.domanda-profile-content .domanda-profile-content-Achievements ul li{margin-bottom: 25px}
+
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails,
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails{
+    border-radius: 15px;
+    margin: 15px 0 10px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-questionContent,
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-questionContent{
+    color: #B2BFBF;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0 0 30px;
+    text-decoration: none;
+    transition: .5s
+}
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-questionContent:hover,
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-questionContent:hover{opacity: .5;}
+
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-left ul li,
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-left ul li{
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #09191C;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 17px
+}
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-left span,
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-left span{
+    color: #fff;
+    font-size: 13px
+}
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-right,
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-right{
+    color: #fff;
+    position: absolute;
+    top: -110px;
+    right: 20px
+}
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-right p,
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-right p{margin: 10px 0}
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-right p span,
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-right p span{margin-right: 5px;font-weight: bold}
+
+
+.domanda-profile-allContents .domanda-profile-followers .card .card-img,
+.domanda-profile-allContents .domanda-profile-following .card .card-img{
+    width: 100%;
+    height: 190px;
+}
+
+.domanda-profile-allContents .domanda-profile-followers a,
+.domanda-profile-allContents .domanda-profile-following a{text-decoration: none}
+
+.domanda-deleteAccount-confirmation{
+    position: fixed;
+    top: 40%;
+    left: 38%;
+    width: 25%;
+    height: 170px;
+    padding: 10px;
+    background-color: #09191C;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    display: none
+}
+
+.domanda-deleteAccount-confirmation .domanda-deleteAccount-confirmation-controls{margin-top: 55px;}
+
+.domanda-deleteAccount-confirmation .domanda-deleteAccount-confirmation-controls a{color: #fff}
+
+/*End Profile Content*/
+
+/*********************
+**********************
+**** All Profile page
+**********************
+**********************/
+
+.domanda-allProfiles .domanda-allProfiles-profileContent{
+    width: 70%;
+    position: relative;
+    border-radius: 5px;
+    margin: 30px auto;
+    padding: 3px 1px;
+    color: #fff;
+    background-color: #0D1A1D
+}
+
+.domanda-allProfiles .domanda-allProfiles-profileContent a.follow,
+.domanda-allProfiles .domanda-allProfiles-profileContent a.following{
+    position: absolute;
+    float: right;
+    bottom: 40%;
+    right: 30px;
+    width: 150px;
+    display: block;
+    text-align: center;
+    padding: 10px 25px;
+    color: #fff;
+    text-decoration: none;
+    transition: .3s
+}
+
+@media (max-width: 890px){
+    .domanda-allProfiles .domanda-allProfiles-profileContent a.follow,
+    .domanda-allProfiles .domanda-allProfiles-profileContent a.following{
+        display: block
+    }
+}
+
+
+/*********************
+**********************
+**** Signin Page *****
+**** signup Page *****
+**********************
+**********************/
+
+
+.domanda-signin-content,
+.domanda-signup-content{padding: 70px 0}
+
+.domanda-signin-content h1,
+.domanda-signin-content .domanda-signin-form h2,
+.domanda-signup-content h1,
+.domanda-signup-content .domanda-signup-form h2{color: #FFF7E9;margin: 5px 0;text-shadow: 0 5px 15px rgba(0,0,0,.5)}
+
+
+.domanda-signin-content .domanda-signin-form h2{margin: 110px 0 0;font-size: 40px}
+.domanda-signup-content .domanda-signup-form h2{margin: 90px 0 0;font-size: 40px}
+
+.domanda-signin-content .domanda-signin-form h3,
+.domanda-signup-content .domanda-signup-form h3{color: #FFF7E9;margin: 10px}
+
+
+.domanda-signin-content .domanda-signin-form,
+.domanda-signup-content .domanda-signup-form{
+    width: 700px;
+    height: 700px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.domanda-signin-content .domanda-signin-form form,
+.domanda-signup-content .domanda-signup-form form{width: 360px;margin: 0 auto;}
+
+.domanda-signin-content .domanda-signin-form form img,
+.domanda-signup-content .domanda-signup-form form img{
+    position: relative;
+    top: 30px;
+    left: 10px
+}
+
+.domanda-signin-content .domanda-signin-form form input[type="text"],
+.domanda-signin-content .domanda-signin-form form input[type="password"],
+.domanda-signin-content .domanda-signin-form form input[type="email"],
+
+.domanda-signup-content .domanda-signup-form form input[type="text"],
+.domanda-signup-content .domanda-signup-form form input[type="password"],
+.domanda-signup-content .domanda-signup-form form input[type="email"]{
+    color: #B2BFBF;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-bottom: -20px;
+    background-color: #09191C;
+    padding-left: 40px
+}
+
+.domanda-signin-content .domanda-signin-form form input[type="text"]::placeholder,
+.domanda-signin-content .domanda-signin-form form input[type="password"]::placeholder,
+.domanda-signin-content .domanda-signin-form form input[type="email"]::placeholder,
+
+.domanda-signup-content .domanda-signup-form form input[type="text"]::placeholder,
+.domanda-signup-content .domanda-signup-form form input[type="password"]::placeholder,
+.domanda-signup-content .domanda-signup-form form input[type="email"]::placeholder{opacity: .7}
+
+
+.domanda-signin-content .domanda-signin-form form input[type="checkbox"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fff;
+    padding: 5px;
+    margin-top: 20px;
+    outline: none;
+    cursor: pointer;
+    position: relative
+}
+
+.domanda-signin-content .domanda-signin-form form input[type="checkbox"]:checked::before,
+.domanda-signup-content .domanda-signup-form form input[type="checkbox"]:checked::before{
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    background-color: #fff
+}
+
+.domanda-signin-content .domanda-signin-form form .form-check label,
+.domanda-signup-content .domanda-signup-form form .form-check label{font-size: 17px;font-weight: bold;color: #fff}
+
+.domanda-signin-content .domanda-signin-form form button,
+.domanda-signup-content .domanda-signup-form form button{
+    background-color: #09191C;
+    color: #fff;
+    border-radius: 15px
+}
+
+.domanda-signup-content .domanda-signup-form form button{
+    margin: 50px 0 20px
+}
+
+.domanda-signin-content .domanda-signin-form .domanda-signin-email,
+.domanda-signup-content .domanda-signup-form .domanda-signin-email{
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.domanda-signin-content .domanda-signin-form .domanda-signin-email a:last-of-type,
+.domanda-signup-content .domanda-signup-form .domanda-signup-email a{color: #FFF7E9}
+
+.domanda-signin-content .domanda-signin-form .domanda-signin-email a:first-of-type{color: #fff}
+
+.domanda-signup-content .domanda-signup-form .domanda-signup-email a{font-size: 20px}
+
+.domanda-signup-content .domanda-signup-form .domanda-signup-email p{
+    width: 400px;
+    color: #fff;
+    margin: 0 auto 20px;
+}
+
+
+/*********************
+**********************
+**** Signup Verifiy **
+**********************
+**********************/
+
+.domanda-signup-verification h1{
+    color: #FFF7E9;
+    margin-top: 200px;
+    text-shadow: 0 5px 15px rgba(0,0,0,.5)
+}
+
+
+.domanda-signup-verification form{
+    width: 500px;
+    margin: 80px auto 0
+}
+
+.domanda-signup-verification form label{
+    color: #FFF7E9;
+    font-size: 18px
+}
+
+.domanda-signup-verification form input[type="text"]{
+    width: 80%;
+    color: #B2BFBF;
+    font-size: 17px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: -20px;
+    background-color: #09191C;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, .5);
+    padding: 5px;
+    border-radius: 5px
+}
+
+.domanda-signup-verification form input[type="submit"]{
+    width: 85px;
+    background-color: #09191C;
+    color: #fff;
+    border-radius: 10px;
+    padding: 8px;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, .5);
+    cursor: pointer;
+}
+
+
+/*********************
+**********************
+**** Home Page *******
+**********************
+**********************/
+
+
+.domanda-home-notify ul li,
+.domanda-Notification-displayType ul li,
+.domanda-Notification-profile-displayType ul li{margin: 0}
+
+.domanda-home-importantQ,
+.domanda-Notification-displayType,
+.domanda-Notification-profile-displayType{margin-top: -10px}
+
+.domanda-home-importantQ ul li,
+.domanda-Notification-displayType ul li,
+.domanda-Notification-profile-displayType ul li{
+    display: inline-block;
+    width: 130px;
+    padding: 10px;
+    margin: 0 auto;
+    color: #B2BFBF;
+    background-color: #09191C;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.domanda-home-importantQ ul li a{
+    text-decoration: none;
+    color: #B2BFBF
+}
+
+.domanda-Notification-displayType ul li.active,
+.domanda-Notification-profile-displayType ul li.active{color: #fff}
+
+.domanda-Notification-displayType ul li:last-of-type,
+.domanda-Notification-profile-displayType ul li:last-of-type{position: relative;}
+
+
+.domanda-home-importantQ .domanda-home-importantQ-category{
+    position: absolute;
+    top: 48px;
+    right: 236px;
+    z-index: 9999;
+}
+
+.domanda-home-importantQ .domanda-home-importantQ-category ul li{
+    display: block;
+    color: #fff;
+}
+
+.domanda-home-importantQ .domanda-home-importantQ-category ul li a{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+@media (max-width:767px){
+    .domanda-home-importantQ ul li,
+    .domanda-Notification-displayType ul li{margin: 5px 0}
+}
+
+.domanda-home-content .domanda-home-heading{margin: 0;font-weight: bold}
+
+.domanda-home-content .domanda-home-askQ{
+    text-decoration: none;
+    background-color: #09191C;
+    color: #B2BFBF;
+    font-weight: bold;
+    padding: 10px;
+    width: 160px;
+    margin-right: -10px;
+    border-radius: 10px;
+    transform: .3s
+}
+.domanda-home-content .domanda-home-askQ:hover{transform: scale(1.1)}
+
+.domanda-home-content .domanda-home-questionDetails{
+    border-radius: 15px;
+    margin: 15px 0 10px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.domanda-home-content .domanda-home-questionDetails:hover{transform: scale(1.1) perspective(2000px)}
+
+.domanda-home-content .domanda-home-questionDetails::before{
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    border: 3px solid #09191C;
+    border-radius: 25px;
+    transform:  scale(0);
+    transition: .5s
+}
+
+.domanda-home-content .domanda-home-questionDetails:hover::before{transform: scale(1)}
+
+.domanda-home-content .domanda-home-questionDetails-questionContent{ 
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0 0 30px;
+    text-decoration: none;
+    transition: .5s
+}
+
+.domanda-home-content .domanda-home-questionDetails-questionContent:hover{opacity: .5}
+
+.domanda-home-content .domanda-home-questionDetails-left ul li{
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #09191C;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 17px
+}
+
+.domanda-home-content .domanda-home-questionDetails-left span{
+    font-size: 13px
+}
+
+.domanda-home-content .domanda-home-questionDetails-right{
+    position: absolute;
+    top: -110px;
+    right: 20px
+}
+
+.domanda-home-content .domanda-home-questionDetails-right p{margin: 10px 0}
+
+.domanda-home-content .domanda-home-questionDetails-right p span{margin-right: 5px;font-weight: bold}
+
+.domanda-home-content .domanda-home-questionsControl a{
+    width: 160px;
+    background-color: #09191C;
+    color: #fff;
+    border-radius: 10px;
+    margin: 30px 0;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: capitalize
+}
+
+
+/*********************
+**********************
+**** question Page ***
+**********************
+**********************/
+
+
+.domanda-question-content{
+    overflow: hidden;
+    padding: 40px 0
+}
+
+
+.domanda-question-content h2{margin-bottom: 0px}
+
+.domanda-question-content label{font-size: 19px;}
+
+.domanda-question-content input[type="text"]{
+    font-size: 17px;
+    border-radius: 10px;
+    box-shadow: 0 10px 60px 1px rgba(0,0,0,.6)
+}
+
+.domanda-question-content ul li{
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer
+}
+
+.domanda-question-content textarea{
+    outline: none;
+    resize: none;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    min-height: 300px;
+}
+
+
+.domanda-question-content input[type="text"]{margin-bottom: 35px}
+.domanda-question-content textarea{margin-bottom: 15px}
+
+.domanda-question-content input[type="text"]::placeholder{opacity: .6}
+
+.domanda-question-content input[type="submit"]{
+    margin: 90px auto;
+    display: block;
+    color: #fff;
+    background-color: #09191C;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+
+/*********************
+**********************
+**** answers Page ****
+**********************
+**********************/
+
+.domanda-answers-content{
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.domanda-answers-content .domanda-answers-content-makeOperation{
+    width: 20px;
+    position: absolute;
+    top: -23px;
+    right: 16px;
+}
+
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu{width: 200px;border: 1px solid #fff}
+
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu::before{
+    content: '';
+    position: absolute;
+    top: -27px;
+    left: 80%;
+    border-width: 13px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent
+}
+
+.domanda-answers-content .domanda-answers-content-makeOperation i{
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.domanda-answers-content h2{color: #B2BFBF;padding-bottom: 15px}
+
+.domanda-answers-content .domanda-answers-questionContent{ 
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    position: relative;
+}
+
+.domanda-answers-content .domanda-answers-questionContent .domanda-answers-questionContent-vote i{font-size: 40px;cursor: pointer;}
+.domanda-answers-content .domanda-answers-questionContent .domanda-answers-questionContent-vote .domanda-answers-questionContent-voteNumber{
+    font-size: 19px;
+    font-weight: bold;
+    margin: -1px 0;
+    margin-left: -2px
+}
+
+.domanda-answers-content .domanda-answers-questionContent ul{margin: 30px 0;display: block}
+.domanda-answers-content .domanda-answers-questionContent ul li{
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #09191C;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 17px
+}
+
+.domanda-answers-content .domanda-answers-questionContent .domanda-answers-questionContent-image{
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+    position: relative;
+    cursor: zoom-in
+}
+
+.domanda-answers-content .domanda-answers-questionContent .domanda-answers-questionContent-image::before{
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 15%;
+    height: 15%;
+    background-color: rgba(0, 0, 0, .5);
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-radius: 7px
+}
+
+.domanda-answers-content .domanda-answers-questionContent .domanda-answers-questionContent-image::after{
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 15%;
+    height: 15%;
+    background-color: rgba(0, 0, 0, .5);
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-radius: 7px
+}
+
+.domanda-answers-content .domanda-answers-questionContent .domanda-answers-questionContent-image.active::before{display: none}
+.domanda-answers-content .domanda-answers-questionContent .domanda-answers-questionContent-image.active::after{display: none}
+
+
+.domanda-answers-content .domanda-answers-questionContent span:first-of-type{font-size: 14px}
+
+.domanda-answers-content .domanda-answers-questionContent span .card{
+    position: absolute;
+    right: 56%;
+    color: #000;
+    padding: 0;
+    z-index: 99999;
+}
+
+.domanda-answers-content .domanda-answers-questionContent span .card.active{display: none}
+
+
+.domanda-answers-content .domanda-answers-questionContent span .card.card_hover_link::before{
+    content: '';
+    position: absolute;
+    top: 215px;
+    left: -28px;
+    border-width: 13px;
+    border-style: solid;
+}
+
+.domanda-answers-content .domanda-answers-questionContent span .card .card-img{
+    width: 100%;
+    height: 190px;
+}
+
+.domanda-answers-content .domanda-answers-questionContent span .card .card-body a{  
+    color: #fff;
+    font-size: 17px;
+    margin-top: 30px
+}
+
+
+.domanda-answers-content h3{
+    padding-bottom: 15px;
+    padding-top: 10px;
+    font-size: 22px
+}
+
+.domanda-answers-content .domanda-answers-add-newanswer .domanda-answers-addComment-form{transition: .5s}
+.domanda-answers-content .domanda-answers-add-newanswer .domanda-answers-addComment-form input{
+    border: none;
+    background-color: transparent;
+    color: #09191C;
+    width: 90%;
+    margin: 60px 0 0 10%;
+    border-radius: 0;
+    outline: none;
+}
+
+.domanda-answers-content .domanda-answers-add-newanswer .domanda-answers-addComment-form input:focus{box-shadow: none}
+
+.domanda-answers-content .domanda-answers-answeredQuestions{
+    width: 100%;
+    padding: 15px;
+    margin: 30px 0 0;
+    border-radius: 5px;
+}
+
+.domanda-answers-content .domanda-answers-answeredQuestions .card{
+    position: absolute;
+    top: -300px;
+    left: 0;
+}
+
+.domanda-answers-content .domanda-answers-answeredQuestions .card .card-img{
+    width: 100%;
+    height: 190px;
+}
+
+.domanda-answers-content .domanda-answers-answeredQuestions ul li{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.domanda-answers-content .domanda-answers-answeredQuestions .domanda-answers-bestanswer-form.active{display: none}
+.domanda-answers-content .domanda-answers-answeredQuestions .domanda-answers-bestanswer-form i{
+    position: absolute;
+    top: 30%;
+    right: -50px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.domanda-answers-content .domanda-answers-answeredQuestions .domanda-answers-bestanswer-form i.active{color: #1abc9c    }
+
+.domanda-answers-content .domanda-answers-userAnswered{
+    width: 80%;
+    padding: 30px 15px;
+    margin: 15px 0;
+    color: #B2BFBF;
+    border-radius: 5px;
+    float: right;
+    box-shadow: 0 0 60px 2px rgba(0,0,0,.6);
+    transition: all .5s
+}
+
+.domanda-answers-content .domanda-answers-addComment .domanda-answers-turnoffcomments{
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    color: #B2BFBF;
+    background-color: #0E4247;
+    font-size: 17px;
+    font-weight: bold;
+    box-shadow: 0 10px 50px 2px rgba(0,0,0,.6);
+    position: absolute;
+    right: 18px;
+    top: 19%;
+}
+
+.domanda-answers-content .domanda-answers-addComment p{
+    font-weight: bold;
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+
+.domanda-answers-content .domanda-answers-addComment ul li{
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: pointer
+}
+
+.domanda-answers-content .domanda-answers-addComment textarea{
+    outline: none;
+    resize: none;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    min-height: 400px;
+}
+
+
+.domanda-answers-content .domanda-answers-addComment input[type="submit"]{
+    display: block;
+    padding: 10px;
+    border: 1px solid rgba(159, 198, 58, .7);
+    border-radius: 5px;
+    color: #B2BFBF;
+    background-color: #09191C;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    float: right;
+}
+
+.domanda-answers-rating-container,
+.domanda-answers-makeReport{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(32, 99, 155, .2);
+    z-index: 9999;
+}
+
+.domanda-answers-rating-container .domanda-answers-rating{
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    width: 30%;
+    height: 250px;
+    background-color: #20639B;
+    color: rgba(255, 255, 255, .8);
+    border: 3px solid #3CAEA3;
+    padding: 5px;
+}
+
+.domanda-answers-rating-container .domanda-answers-rating h4{font-family: Helvetica,Arial,sans-serif}
+
+.domanda-answers-rating-container .domanda-answers-rating .domanda-answers-rating-values{margin-top: 50px;margin-left: 10px}
+.domanda-answers-rating-container .domanda-answers-rating .domanda-answers-rating-values span{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 26px;
+    padding: 5px;
+    background-color: #173F5F;
+    color: #fff;
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: .3s
+}
+
+.domanda-answers-rating-container .domanda-answers-rating .domanda-answers-rating-values span:hover{transform: translateY(-5px);background-color: #3CAEA3}
+
+.domanda-answers-makeReport .domanda-answers-makeReport-content{
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    width: 30%;
+    min-height: 390px;
+    height: auto;
+    padding: 10px;
+    background-color: #20639B;
+    color: rgba(255, 255, 255, .8);
+    border: 3px solid #3CAEA3;
+}
+
+.domanda-answers-makeReport .domanda-answers-makeReport-content textarea{
+    height: 200px;
+    font-size: 18px;
+    resize: none
+}
+
+.domanda-answers-makeReport .domanda-answers-makeReport-content .domanda-answers-makeReport-controls{
+    position: relative;
+    right: -73%;
+}
+
+.domanda-answers-makeReport .domanda-answers-makeReport-content .domanda-answers-makeReport-controls input[type="submit"]{
+    margin: 5px 0 0;
+    background-color: #173F5F;
+    color: #fff;
+    transition: .3s
+}
+
+.domanda-answers-makeReport .domanda-answers-makeReport-content .domanda-answers-makeReport-controls button{margin: 5px 0 0;}
+
+.domanda-answers-makeReport .domanda-answers-makeReport-content input[type="submit"]:hover{background-color: rgba(0.09, 0.25, 0.37, .2)}
+
+.domanda-answer-editQuestion{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(32, 99, 155, .2);
+    z-index: 9999;
+}
+
+.domanda-answer-editQuestion .domanda-answer-editQuestion-content{
+    width: 40%;
+    height: 420px;
+    margin: 15% auto 0;
+    padding: 10px;
+    background-color: #20639B;
+    color: rgba(255, 255, 255, .8);
+    border: 3px solid #3CAEA3;
+    position: relative;
+}
+
+.domanda-answer-editQuestion .domanda-answer-editQuestion-content textarea{
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    resize: none
+}
+
+.domanda-answer-editQuestion .domanda-answer-editQuestion-content .domanda-answer-editQuestion-controls{
+    position: absolute;
+    right: 10px;
+}
+
+/*********************
+**********************
+**** achievement page*
+**********************
+**********************/
+
+
+.domanda-achievement-content{
+    padding: 50px 0;
+    overflow: hidden
+}
+
+.domanda-achievement-content h2{color: #B2BFBF;margin-bottom: 15px;}
+
+.domanda-achievement-content .domanda-achievement-name{
+    width: 200px;
+    padding: 10px;
+    margin: 20px 0;
+    background-color: #0D1A1D;
+    color: #B2BFBF;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    box-shadow: 15px 0 50px 1px rgba(0,0,0,.7);
+    position: relative;
+}
+
+.domanda-achievement-content .domanda-achievement-name.active::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+
+.domanda-achievement-content .domanda-achievement-name p{margin: 5px auto}
+
+@media (max-width : 992px){
+    .domanda-achievement-content .domanda-achievement-name{margin: 20px auto;}
+}
+
+
+
+/*********************
+**********************
+**** Notification Page
+**********************
+**********************/
+
+.domanda-Notification-heading ul li a{
+    color: #B2BFBF;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+    padding: 10px;
+    width: 160px;
+    background-color: #0E4247;
+    border: 2px solid #fff;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    position: relative
+}
+.domanda-Notification-heading ul li a.active{background-color: #0F1719}
+
+
+.domanda-Notification-heading ul li a::before{
+    content: attr(data-notify);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    text-align: center;
+    background-color: firebrick;
+    border-radius: 20px
+}
+
+.domanda-Notification-Content .domanda-Notification-info{
+    margin: 15px 0;
+    border-radius: 10px;
+    color: #B2BFBF;
+    transition: .5s
+}
+
+.domanda-Notification-Content .domanda-Notification-info:hover{transform: scale(1.1)}
+
+.domanda-Notification-Content .domanda-allNotifications-type > section:not(#domanda-allNotifications){display: none}
+
+.domanda-Notification-Content .domanda-Notification-info .domanda-Notification-infoContent{ 
+    font-size: 22px;
+}
+
+
+.domanda-Notification-Content .domanda-Notification-info p{
+    margin: 20px auto;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.domanda-Notification-Content .domanda-Notification-info p.domanda-Notification-infoTime{font-weight: normal;font-size: 15px}
+
+
+/*********************
+**********************
+**** Notfound Page ***
+**********************
+**********************/
+
+.domanda-notFound-page{
+    width: 60%;
+    height: 700px;
+    margin: 0 auto;
+    background: url('../images/not-found-bg.png') no-repeat center;
+    background-size: contain
+}
+
+button.domanda-notFound-btnBack{
+    width: 200px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 30px;
+    background-color: #fff;
+    color: #124147;
+    margin: 90px auto
+}
+
+
+
+/*********************
+**********************
+**** Start Alert *****
+**********************
+**********************/
+
+.domanda-display-message{
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(9, 25, 28, 1);
+    border-bottom: 1px solid rgba(159, 198, 58, .7);
+    color: #fff;
+    font-size: 20px;
+    display: none;
+    z-index: 9999;
+}
+
+.domanda-display-message span{margin: 5px auto 0}
+
+
+/*********************
+**********************
+**** Start Display ***
+**** Notifications ***
+**********************
+**********************/
+.domanda-display-notification{
+    position: fixed;
+    top: 28%;
+    left: -370px;
+    width: 350px;
+    height: 100px;
+    background-color: #09191C;
+    border-radius: 5px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    transition: .5s;
+}
+
+
+.domanda-display-notification a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/*Start Change site theme*/
+.domanda-change-theme{
+    width: 450px;
+    position: fixed;
+    top: 148px;
+    left: -451px;
+    background-color: #09191C;
+    transition: .5s
+}
+
+.domanda-change-theme .list-unstyled{margin:0 !important}
+
+.domanda-change-theme.active{left: 0px;}
+
+.domanda-change-theme div{
+    position: absolute;
+    top: -1px;
+    right: -40px;
+    color: #fff;
+    font-size: 26px;
+    width: 40px;
+    height: 44px;
+    background-color: #09191C;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+
+.domanda-change-theme ul li{
+    width: 27px;
+    height: 27px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px 3px;
+    cursor: pointer;
+    transition: .4s
+}
+
+.domanda-change-theme ul li:hover{transform: translateY(-5px)}
+
+.domanda-change-theme ul li:nth-of-type(2){background-color: #f1c40f} /*Sun Flower*/
+.domanda-change-theme ul li:nth-of-type(3){background-color: #e74c3c} /*Alizarin*/
+.domanda-change-theme ul li:nth-of-type(4){background-color: #e67e22} /*Carrot*/
+.domanda-change-theme ul li:nth-of-type(5){background-color: #9fc63ab3} /*Default*/
+.domanda-change-theme ul li:nth-of-type(6){background-color: #8e44ad} /*Wisteria*/
+.domanda-change-theme ul li:nth-of-type(7){background-color: #7f8c8d} /*Asbestos*/
+.domanda-change-theme ul li:nth-of-type(8){background-color: #3498db} /*Peter River*/
+.domanda-change-theme ul li:nth-of-type(9){background-color: #2ecc71} /*Emerald*/
+.domanda-change-theme ul li:nth-of-type(10){background-color: #2c3e50} /*Midnight Blue*/
+.domanda-change-theme ul li:nth-of-type(11){background-color: #1abc9c} /*Turquoise*/
+.domanda-change-theme ul li:nth-of-type(12){background-color: #000} /*Black*/
+
+
+/************************
+* Display Question Image *
+*************************/
+.domanda-display-questionImage{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    transform: scale(0);
+    transition: .4s;
+    z-index: 99999
+}
+
+.domanda-display-questionImage i{
+    width: 50px;
+    height: 50px;
+    /*background-color: firebrick;*/
+    text-align: center;
+    font-size: 30px;
+    line-height: 50px;
+    color: #fff;
+    border-radius: 5px;
+    position: absolute;
+    top: 50px;
+    right: 15px;
+    cursor: pointer
+}
+
+.domanda-display-questionImage .domanda-questionImage{
+    width: 70%;
+    height: 90%;
+    margin: 50px auto 0;
+}

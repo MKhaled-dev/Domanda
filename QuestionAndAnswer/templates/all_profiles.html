@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<section class="domanda-allProfiles" style="margin-top: 85px">
+    <div class="container">
+        <div class="row">
+            {% for all_user, isFollowing in allUsers %}
+                <div class="domanda-allProfiles-profileContent">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="domanda-allProfiles-imageProfile"
+                            style="
+                                width: 200px;
+                                height: 200px;
+                                background: url( {{all_user.profile_image.url}} );
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                            "></div>
+                        </div>
+                        <div class="col-sm-8" style="margin: auto">
+                            <h5 class="card-title"><i class="fas fa-pencil-alt mr-3" style="font-size: 20px"></i>{{ all_user.username }}</h5>
+        
+                            <!-- Display User Career -->
+                            {% if all_user.career_type != '' %}
+                                <p class="card-text"><i class="fas fa-briefcase mr-3" style="font-size: 20px"></i>{{ all_user.career_type }} at <br> <span class="d-inline-block" style="margin-left: 35px">{{ all_user.career_value }}</span></p>
+                            {% endif %}
+                
+                            <!-- Display User Location -->
+                            {% if all_user.country != '' %}
+                                <p class="card-text"><i class="fas fa-map-marker-alt mr-3" style="font-size: 20px"></i>{{ all_user.country }}</p>
+                            {% endif %}
+
+                            <!-- Display User Followers -->
+                            {% if all_user.number_followers != 0 %}
+                                <p class="card-text">
+                                    <img src="{% static 'QuestionAndAnswer/images/Follow_20px.png' %}" class="mr-3" /> Followed by {{ all_user.number_followers }} people
+                                </p>
+                            {% endif %}
+                        </div>
+                        {% if user.is_authenticated and all_user.username != user.username %}
+                                {% if isFollowing == False %}
+                                    <a href="{% url 'followuser' all_user.username user.username %}" class="follow"><i class="fas fa-plus mr-2"></i>Follow</a>
+                                {% else %}
+                                    <a href="{% url 'unfollow' all_user.username user.username %}" class="following"><i class="fas fa-check mr-2"></i>Following</a>
+                                {% endif %}
+                            {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<!-- Start Question Page Content -->
+
+<section class="domanda-question-content">
+    <div class="container">
+        <h2 class="text-center">Ask a question</h2>
+        <div class="row">
+            <div class="col">
+
+                <!-- Start Question Form -->
+                <form action="{% url 'postquestion' user.username %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="questionTitle" class="text-capitalize font-weight-bold">title</label>
+                        <input type="text" name="question-title" class="form-control" id="questionTitle" placeholder="Be Specific" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="questionBody" class="text-capitalize font-weight-bold">body</label>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-bold"></i></li>
+                            <li><i class="fas fa-italic"></i></li>
+                            <li><i class="fas fa-link"></i></li>
+                            <li><label for="id_image"><i class="fas fa-image" style="cursor: pointer;"></i></label></li>
+                        </ul>
+                        <textarea name="question-body" class="" id="questionBody"></textarea>
+                    </div>
+
+                    <div class="form-group d-none">
+                        <input type="file" name="image" accept="image/*" id="id_image" multiple />
+                    </div>
+
+                    <input type="submit" name="question-submit" value="Post Your Question" class="btn text-center" />
+                </form>
+
+                </div>
+            </div>
+        </div>
+</section>
+
+<!-- End Question Page Content -->
+
+
+{% endblock %}

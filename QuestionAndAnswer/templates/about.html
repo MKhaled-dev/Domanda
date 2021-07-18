@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% if user.is_authenticated %}
+{% include 'user_control.html' %}
+{% endif %}
+
+
+<!-- Start Content of About page -->
+<section class="domanda-about-content">
+    <div class="container">
+
+        <!-- Start Video -->
+        <div class="domanda-about-video">
+            <video controls>
+                <source src="{% static 'QuestionAndAnswer/images/GP_Intro.m4v' %}" />
+            </video>
+        </div>
+
+        <!-- Start about us -->
+        <div class="domanda-about-text">
+            <img src="{% static 'QuestionAndAnswer/images/Icons/Domanda.png' %}" width="350" height="350" class="d-block" style="margin: 0 auto;margin-bottom:-60px" alt="" />
+            <p class="text-uppercase text-center font-weight-bold">in 2019 , five developers created this website<br> as their graduation project.<br>today, the website has about 100000 users and 100000000 questions.<br>the aim of this project was to create a place<br> where you can answer questions and<br> get answers for your questions.</p>
+            <p class="text-uppercase text-center font-weight-bold" style="margin-top:50px">ther developers team</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+<!-- End Content of About page -->

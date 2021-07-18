@@ -1,0 +1,360 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<section class="domanda-Notification-profile-displayType text-center" style="margin-top:10px">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul class="list-unstyled">
+                    <li class="text-capitalize active rounded" data-profile-content = "#domanda-profile-content" style="width:220px">personal information</li>
+                    <li class="text-capitalize rounded" data-profile-content = "#domanda-profile-postedQuestion">questions</li>
+                    <li class="text-capitalize rounded" data-profile-content = "#domanda-profile-savedQuestion" style="width:200px">saved questions</li>
+                    <li class="text-capitalize rounded" data-profile-content = "#domanda-profile-followers" style="width:200px">followers ({{ followers | length }})</li>
+                    <li class="text-capitalize rounded" data-profile-content = "#domanda-profile-following" style="width:200px">following ({{ following | length }})</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Start Content of Profile Page -->
+<section class="domanda-profile-allContents">
+
+    <!-- Start Display Profile Content -->
+    <section class="domanda-profile-content" id = "domanda-profile-content">
+        <div class="container">
+            <form class="domanda-profile-content-form" method="post" action="{% url 'editprofile' %}" enctype="multipart/form-data">
+    
+                {% csrf_token %}
+                <!-- Display Name & Full name & Location -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="domanda-profile-img" style="background: url( {{user_info.profile_image.url}} );
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            color: rgba(255, 255, 255, 0)">
+                            
+                            {{ form }}
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 offset-md-2">
+                        <div class="domanda-profile-info">
+                            <div class="form-group">
+                                <label for="userName" class="text-capitalize">display name (username)</label>
+                                <input type="text" name="profile-username" class="form-control border border-light" id="userName" value = "{{user_info.username}}" readonly  />
+                            </div>
+                            <div class="form-group">
+                                <label for="fullname" class="text-capitalize">full name</label>
+                                <input type="text" name="profile-fullname" class="form-control border border-light" id="fullname" value = "{{user_info.firstName}} {{user_info.lastName}}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="text-capitalize">email</label>
+                                <input type="email" name="profile-email" class="form-control border border-light" id="email" value = "{{user_info.email}}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="location" class="text-capitalize">country</label>
+                                <input type="text" name="profile-location" class="form-control border border-light" id="location" value = "{{user_info.country}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- About User information -->
+                <div class="row">
+                    <div class="col">
+                        <div class="domanda-profile-about">
+                            <h3 class="text-capitalize" style="margin: 100px 0 30px">about me</h3>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-bold"></i></li>
+                                <li><i class="fas fa-italic"></i></li>
+                                <li><i class="fas fa-link"></i></li>
+                                <li><i class="fas fa-image"></i></li>
+                            </ul>
+                            <textarea class="form-control border border-light" name="profile-aboutme" spellcheck="false">{{user_info.aboutme}}</textarea>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- web presence for user-->
+                <h3 class="text-capitalize" style="margin: 0 0 30px">web presence</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="domanda-profile-links">
+                            <span class="text-capitalize">website link</span>
+                            <input type="text" name="profile-websitelink" class="form-control border border-light   " value = "{{user_info.WebsiteLink}}" />
+                            <i class="fas fa-link"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="domanda-profile-links">
+                            <span class="text-capitalize">twitter link or username</span>
+                            <input type="text" name="profile-twitterlink" class="form-control border border-light" value = "{{user_info.TwitterLink}}" />
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="domanda-profile-links">
+                            <span class="text-capitalize">github link or username</span>
+                            <input type="text" name="profile-github" class="form-control border border-light" value = "{{user_info.GitHubLink}}" />
+                            <i class="fab fa-github"></i>
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <!-- Career for user -->
+                <h3 class="text-capitalize d-inline-block" style="margin-top:40px;margin-bottom:0">career</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="domanda-profile-career" style="margin-top:30px">
+    
+                            {% if user_info.workORschool == "Work" %}
+                            <input type="radio" name="profile-career" data-value="Work" value="Work" class="active-btn" checked />
+                            <input type="radio" name="profile-career" data-value="School" value="School" />
+                            {% else %}
+                            <input type="radio" name="profile-career" data-value="Work" value="Work" />
+                            <input type="radio" name="profile-career" data-value="School" value="School" class="active-btn" checked />
+                            {% endif %}
+    
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="domanda-profile-displayedCareer">
+                            <span class="text-capitalize d-block">degree or concentration and school name</span>
+                            <input type="text" class="border border-light" value = "{{user_info.career_type}}" name="profile-career-type" />
+                            <span class="domanda-profile-displayedCareer-comma text-center d-inline-block">&#44;</span>
+                            <input type="text" class="border border-light" value = "{{user_info.career_value}}" name="profile-career-value"  />
+                        </div>
+                    </div>
+                </div>
+    
+                
+                <!-- Current Rating Values -->
+                <h3 class="text-capitalize d-inline-block" style="margin: 30px 0 30px">interesting</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select class="form-control domanda-profile-rating">
+                            <option value="Choose_Category">Choose Category....</option>
+                            <option value="worldRating">World</option>
+                            <option value="sportRating">Sport</option>
+                            <option value="businessRating">Business</option>
+                            <option value="scienceRating">Science</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="domanda-profile-rating-values">
+                            <input type="number" min="0" max="10" name="world_rating" id="worldRating" class="form-control" value="{{ worldRating }}" hidden />
+                            <input type="number" min="0" max="10" name="sport_rating" id="sportRating" class="form-control" value="{{ sportRating }}" hidden />
+                            <input type="number" min="0" max="10" name="business_rating" id="businessRating" class="form-control" value="{{ businessRating }}" hidden />
+                            <input type="number" min="0" max="10" name="science_rating" id="scienceRating" class="form-control" value="{{ scienceRating }}" hidden />
+                        </div>
+                    </div>
+                </div>
+
+    
+                <!-- Career buttons action -->
+                <div class="row">
+                    <div class="col align-self-start ">
+                        <div class="domanda-profile-actions text-left">
+                            <a href="#" class="btn border border-light text-capitalize" id="profile-delete">delete account</a>
+                        </div>
+                    </div>
+                    <div class="col align-self-end">
+                        <div class="domanda-profile-actions text-right">
+                            <input href="{% url 'editprofile' %}" type="submit" class="btn border border-light text-capitalize" value="save profile" />
+                            <input type="button" class="btn border border-light text-capitalize" value="cancel" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Start Display Questions which user posted -->
+    <section class="domanda-profile-postedQ" id = "domanda-profile-postedQuestion">
+        <div class="container">
+            <div class="row">
+                {% for PostedQuestion in posted_question %}
+                    <div class="col-sm-12">
+                        <div class="domanda-profile-questionDetails wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".25s">
+                            <a class="domanda-profile-questionDetails-questionContent d-block" href="{% url 'getquestion' PostedQuestion.question_id %}">{{PostedQuestion.sub_content_home}}</a>
+                            <div class="row">
+                                <div class="col align-self-start">
+                                    <div class="domanda-profile-questionDetails-left">
+                                        <ul class="list-unstyled">
+                                            {% for category in categories %}
+                                                {% if PostedQuestion.question_id == category.question.question_id  %}
+                                                    <li>{{ category.categoryname }}</li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+        
+                                        {% if PostedQuestion.username.username != null %}
+                                            <span>asked on {{ PostedQuestion.date }} | {{ PostedQuestion.time }} <span class="ml-1">by {{PostedQuestion.username.username}}</span> </span>
+                                        {% else %}
+                                            <span>asked on {{ PostedQuestion.date }} | {{ PostedQuestion.time }} by <span class="ml-1 text-capitalize">deleted user</span> </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col align-self-end">
+                                    <div class="domanda-profile-questionDetails-right">
+                                        <p class="text-capitalize"><span>{{ PostedQuestion.views }}</span> views</p>
+                                        <p class="text-capitalize"><span>{{ PostedQuestion.num_answers }}</span> answers</p>
+                                        <p class="text-capitalize"><span>{{ PostedQuestion.vote }}</span> votes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Start Display Saved Questions -->
+    <section class="domanda-profile-savedQ" id = "domanda-profile-savedQuestion">
+        <div class="container">
+            <div class="row">
+                {% for SavedQuestion in saved_questions %}
+                    <div class="col-sm-12">
+                        <div class="domanda-profile-questionDetails wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".25s">
+                            <a class="domanda-profile-questionDetails-questionContent d-block" href="{% url 'getquestion' SavedQuestion.saved_question.question_id %}">{{SavedQuestion.saved_question.sub_content_home}}</a>
+                            <div class="row">
+                                <div class="col align-self-start">
+                                    <div class="domanda-profile-questionDetails-left">
+                                        <ul class="list-unstyled">
+                                            {% for category in categories %}
+                                                {% if SavedQuestion.saved_question.question_id == category.question.question_id  %}
+                                                    <li>{{ category.categoryname }}</li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+
+                                        {% if SavedQuestion.username.username != null %}
+                                            <span>asked on {{ SavedQuestion.saved_question.date }} | {{ SavedQuestion.saved_question.time }} <span class="">by {{SavedQuestion.saved_question.username.username}}</span></span>
+                                        {% else %}
+                                            <span>asked on {{ SavedQuestion.saved_question.date }} | {{ SavedQuestion.saved_question.time }} by deleted user</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col align-self-end">
+                                    <div class="domanda-profile-questionDetails-right">
+                                        <p class="text-capitalize"><span>{{ SavedQuestion.saved_question.views }}</span> views</p>
+                                        <p class="text-capitalize"><span>{{ SavedQuestion.saved_question.num_answers }}</span> answers</p>
+                                        <p class="text-capitalize"><span>{{ SavedQuestion.saved_question.vote }}</span> votes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Start Display Followers that follow this user -->
+    <section class="domanda-profile-followers" id = "domanda-profile-followers">
+        <div class="container">
+            <div class="row">
+                {% for follower in followers %}
+                    <a href="{% url 'userprofile' follower.username %}">
+                        <div class="col-sm-12 col-md-6 col-lg-4 mt-5">
+                            <div class="card" style="width: 18rem">
+                                <div class="card-img" style="background: url( {{follower.profile_image.url}} );
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                background-size: cover;"></div>
+                                
+                                <div class="card-body" style="background-color: #0D1A1D;color:#fff">
+                                    <h5 class="card-title"><i class="fas fa-pencil-alt mr-3" style="font-size: 20px"></i>{{ follower.username }}</h5>
+        
+                                    <!-- Display User Career -->
+                                    {% if follower.career_type != '' %}
+                                        <p class="card-text"><i class="fas fa-briefcase mr-3" style="font-size: 20px"></i>{{ follower.career_type }} at <br> <span class="d-inline-block" style="margin-left: 35px">{{ follower.career_value }}</span></p>
+                                    {% endif %}
+                        
+                                    <!-- Display User Location -->
+                                    {% if follower.country != '' %}
+                                        <p class="card-text"><i class="fas fa-map-marker-alt mr-3" style="font-size: 20px"></i>{{ follower.country }}</p>
+                                    {% endif %}
+    
+                                        <!-- Display User Followers -->
+                                        {% if follower.number_followers != 0 %}
+                                        <p class="card-text">
+                                            <img src="{% static 'QuestionAndAnswer/images/Follow_20px.png' %}" class="mr-3" /> Followed by {{ follower.number_followers }} people
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Start Display Following that user follow them -->
+    <section class="domanda-profile-following" id = "domanda-profile-following">
+        <div class="container">
+            <div class="row">
+                {% for follower in following %}
+                    <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
+                        <a href="{% url 'userprofile' follower.username %}">
+                            <div class="card" style="width: 18rem">
+                                <div class="card-img" style="background: url( {{follower.profile_image.url}} );
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                background-size: cover;" ></div>
+                                
+                                <div class="card-body" style="background-color: #0D1A1D;color:#fff">
+                                    <h5 class="card-title"><i class="fas fa-pencil-alt mr-3" style="font-size: 20px"></i>{{ follower.username }}</h5>
+                                    
+                                    <!-- Display User Career -->
+                                    {% if follower.career_type != '' %}
+                                        <p class="card-text"><i class="fas fa-briefcase mr-3" style="font-size: 20px"></i>{{ follower.career_type }} at <br> <span class="d-inline-block" style="margin-left: 35px">{{ follower.career_value }}</span></p>
+                                    {% endif %}
+                        
+                                    <!-- Display User Location -->
+                                    {% if follower.country != '' %}
+                                        <p class="card-text"><i class="fas fa-map-marker-alt mr-3" style="font-size: 20px"></i>{{ follower.country }}</p>
+                                    {% endif %}
+
+                                        <!-- Display User Followers -->
+                                        {% if follower.number_followers != 0 %}
+                                        <p class="card-text">
+                                            <img src="{% static 'QuestionAndAnswer/images/Follow_20px.png' %}" class="mr-3" /> Followed by {{ follower.number_followers }} people
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>    
+
+</section>
+<!-- End Content of Profile Page -->
+
+
+<!-- Start Make Confirmation Message if usee decide to delete his/here account -->
+<section class="domanda-deleteAccount-confirmation">
+    <div class="row">
+        <div class="col">
+            <h5 class="text-capitalize">delete account</h5>
+            <p class="text-lead">Are you sure you want to delete account ?</p>
+            <div class="domanda-deleteAccount-confirmation-controls text-right">
+                <a href="{% url 'deleteprofile' user.username %}" class="text-capitalize btn btn-danger mr-2">delete</a>
+                <button class="text-capitalize btn">cancel</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

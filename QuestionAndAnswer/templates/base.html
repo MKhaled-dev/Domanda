@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--Important meta for Responsive-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!--Site Title-->
+        {% if user.is_authenticated and user.users.notifiy_count == 0 %}
+            <title>Domanda | {{title}}</title>
+        {% elif user.is_authenticated and user.users.notifiy_count != 0 %}
+            <title> ({{user.users.notifiy_count}}) Domanda | {{title}}</title>
+        {% else %}
+            <title>Domanda | {{title}}</title>
+        {% endif %}
+
+        <!-- Start my Css Files -->
+        <link rel="stylesheet" href="{% static 'QuestionAndAnswer/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'QuestionAndAnswer/css/all.css' %}" />
+        <link rel="stylesheet" href="{% static 'QuestionAndAnswer/css/style.css' %}" />
+        {% if user.is_authenticated %}
+            <link rel="stylesheet" href="{{ user.users.theme_path }}" />
+            {% if user.users.mode_path == 'dark' %}
+                <link rel="stylesheet" href="/static/QuestionAndAnswer/css/modes/dark-mode.css" />
+            {% else %}
+                <link rel="stylesheet" href="/static/QuestionAndAnswer/css/modes/light-mode.css" />
+            {% endif %}
+        {% else %}
+            <link rel="stylesheet" href="{% static 'QuestionAndAnswer/css/themes/default-theme.css' %}" />
+            <link rel="stylesheet" href="{% static 'QuestionAndAnswer/css/modes/dark-mode.css' %}" />
+        {% endif %}
+        <link rel="stylesheet" href="{% static 'QuestionAndAnswer/css/animate.css' %}" />
+        <link rel="stylesheet" href="{% static 'QuestionAndAnswer/css/hover.css' %}" />
+
+        <!-- Site Logo Icon -->
+        <link rel="icon" href="{% static 'QuestionAndAnswer/images/Icons/dodo.png' %}" />
+
+    </head>
+
+    <body class="{{body}}">
+
+        <!--Start Navbar-->
+
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top domanda-navbar">
+            <a class="navbar-brand mr-auto hvr-pulse-grow" href="{% url 'homePage' %}"></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#domanda-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="domanda-content">
+                <div class="domanda-search ml-auto">
+                    <!-- Search input -->
+                    <form class="my-2 my-lg-0" id = "form-search" action="{% url 'searchTitlewithEvent'  %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="search_text" id = "domanda-search" placeholder="Search" class="form-control mr-sm-2" required/>
+                        <select class="custom-select" data-toggle="tooltip" data-placement="top" title="Search Filter">
+                            <option>Questions</option>
+                            <option>Users</option>
+                        </select>
+                        <input type="text" class="d-none" id="searchby_id" name="searchBy_value" value="Questions" />
+                        <button type="submit" style="cursor: pointer;"><i class="fas fa-search"></i></button>
+                    </form>
+
+
+                    <!-- Links for other pages -->
+                    {% if user.is_authenticated %}
+
+                    {% else %}
+                    <ul class="navbar-nav text-uppercase domanda-list">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'askQuestionPage' %}">
+                                questions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">tags</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'aboutPage' %}">about</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'help' %}">help</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+
+                    
+                    <!-- Start Display Search Result -->
+                    {% if user.is_authenticated %}
+                        <div class="domanda-search-result d-none"></div>
+                    {% else %}
+                        <div class="domanda-search-result d-none" style ="top : 50%"></div>
+                    {% endif %}
+                </div>
+
+                {% if user.is_authenticated %}
+                <!-- User profile and other options -->
+                <div class="ml-auto">
+                    <div class="domanda-home-notify-userContent">
+                        <div class="d-flex">
+                          <div class="dropdown mr-1">
+                              <div class="domanda-home-notify-userContent-img" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                  <img src="{{ user.users.profile_image.url }}" width="60" height="60" alt="{{ user.username }}" />
+                              </div>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                    <div class="row" style="cursor: auto">
+                                        <div class="col-sm-3">
+                                            <img src="{{ user.users.profile_image.url }}" class="rounded-circle ml-4 d-inline" width="70" height="70" alt="{{ user.username }}" />
+                                        </div>
+                                        <div class="col-sm-9 mt-2 pl-4">
+                                            <h4 class="d-inline">{{ user.username }}</h4>
+                                            <p class="font-weight-bold" style="overflow: hidden;">{{ user.email }}</p>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item pl-4" href="{% url 'profilePage' %}">Profile</a>
+                                    <a class="dropdown-item pl-4" href="#">Settings</a>
+                                    <a class="dropdown-item pl-4" href="#">Help</a>
+
+                                    <!-- Start change mode color of site -->
+                                    <div class="domanda-switch-mode form-group" style="width:60px;margin:10px 0 10px 20px">
+                                        <form method="POST" action="{% url 'changesitemode' %}">
+                                            {% csrf_token %}
+                                            {% if user.users.mode_path == "dark" %}
+                                                <input type="checkbox" name="change_site_mode" class="pl-4" data-toggle="tooltip" data-placement="bottom" title="Switch to light mode" />
+                                            {% else %}
+                                                <input type="checkbox" name="change_site_mode" class="pl-4" data-toggle="tooltip" data-placement="bottom" title="Switch to dark mode" checked />
+                                            {% endif %}
+                                        </form>
+                                    </div>
+
+                                    <div class="dropdown-divider"></div>
+                                    
+                                    <a class="dropdown-item pl-4" href="{% url 'logout' %}">
+                                        <i class="fas fa-power-off mr-2" style="font-size:22px;"></i>
+                                        <span class="position-absolute float-right" style="font-size:17px;margin-top: -1px">Sign out</span>
+                                    </a>
+    
+                              </div>
+                          </div>
+                       </div>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Login and Signup Link -->
+                <div class="domanda-autho ml-auto text-capitalize">
+                    <a href="{% url 'signinPage' %}" class="btn">login</a>
+                    <a href="{% url 'signupPage' %}" class="btn">sign up</a>
+                </div>
+                {% endif %}
+
+            </div>
+        </nav>
+
+        <!--End Navbar-->
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+         <!-- Start Display Custom Alert -->
+        <section class="domanda-display-message">
+            <span class="text-center d-block"></span>
+        </section>
+        
+
+        <!-- Start Display Notifications -->
+        {% if messages %}
+            <section class="domanda-display-notification">
+                {% for message in messages %}
+                    <p class="text-center pt-3 ">
+                        <a href="{% url 'getquestion' lastNotification.event_number %}">{{ message }}</a>
+                    </p>
+                {% endfor %}
+            </section>
+        {% endif %}
+
+        
+
+
+        <!-- Start Change Site Theme -->
+       {% if user.is_authenticated %}
+       <section class="domanda-change-theme">
+            <div class="text-center">
+                <i class="fas fa-paint-brush" data-toggle="tooltip" data-placement="top" title="Change Theme"></i>
+            </div>
+            <form method="POST" action="{% url 'changetheme' user.username %}">
+                {% csrf_token %}
+                <ul class="list-unstyled">
+                    {% if user.users.mode_path == "drak" %}
+                        <li data-theme-value = "white-theme.css" data-toggle="tooltip" data-placement="top" title="White"></li>
+                    {% else %}
+                        <li data-theme-value = "rose-theme.css" data-toggle="tooltip" data-placement="top" title="Rose" style="background-color: #ff0064"></li>
+                    {% endif %}
+                    <li data-theme-value = "sun_flower-theme.css" data-toggle="tooltip" data-placement="top" title="Sun Flower" ></li>
+                    <li data-theme-value = "alizarin-theme.css" data-toggle="tooltip" data-placement="top" title="Alizarin" ></li>
+                    <li data-theme-value = "carrot-theme.css" data-toggle="tooltip" data-placement="top" title="Carrot" ></li>
+                    <li data-theme-value = "default-theme.css" data-toggle="tooltip" data-placement="top" title="Sushi" ></li>
+                    <li data-theme-value = "wisteria-theme.css" data-toggle="tooltip" data-placement="top" title="Wisteria" ></li>
+                    <li data-theme-value = "asbestos-theme.css" data-toggle="tooltip" data-placement="top" title="Asbestos" ></li>
+                    <li data-theme-value = "peter_river-theme.css" data-toggle="tooltip" data-placement="top" title="Peter River" ></li>
+                    <li data-theme-value = "emerald-theme.css" data-toggle="tooltip" data-placement="top" title="Emerald" ></li>
+                    <li data-theme-value = "midnight_blue-theme.css" data-toggle="tooltip" data-placement="top" title="Midnight Blue" ></li>
+                    <li data-theme-value = "turquoise-theme.css" data-toggle="tooltip" data-placement="top" title="turquoise" ></li>
+                    <li data-theme-value = "black-theme.css" data-toggle="tooltip" data-placement="top" title="Black" ></li>
+                </ul>
+            </form>
+        </section>
+       {% endif %}
+        
+
+        <!--Start my Javascript Files-->
+        <script src="{% static 'QuestionAndAnswer/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'QuestionAndAnswer/js/Popper.min.js' %}"></script>
+        <script src="{% static 'QuestionAndAnswer/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'QuestionAndAnswer/js/wow.min.js' %}"></script>
+        <script src="{% static 'QuestionAndAnswer/js/jquery.playSound.js' %}"></script>
+        <script src="{% static 'QuestionAndAnswer/js/bootstrap-suggest.js' %}"></script>
+        <script src="{% static 'QuestionAndAnswer/js/jquery.hoverDelay.min.js' %}"></script>
+        <script src="{% static 'QuestionAndAnswer/js/app.js' %}"></script>
+        <script>
+            new WOW().init();
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<!-- Start Choice Important Question -->
+
+<section class="domanda-Notification-displayType text-center" style="margin-top:10px">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="text-capitalize active" data-notifiy-displayType = "#domanda-allNotifications">all</li>
+                        <li class="text-capitalize" data-notifiy-displayType = "#domanda-QNotifications">questions</li>
+                        <li class="text-capitalize" data-notifiy-displayType = "#domanda-ANotifications">answers</li>
+                        <li class="text-capitalize" data-notifiy-displayType = "#domanda-FNotifications">followers</li>
+                        <li class="text-capitalize" data-notifiy-displayType = "#domanda-MNotifications">mentions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</section>
+    
+<!-- End Choice Important Question -->
+
+<!-- Start Notification Page Content -->
+
+<section class="domanda-Notification-Content">
+    <div class="container">
+        
+       <div class="domanda-allNotifications-type">
+            <!-- Start Display All Notifications -->
+            <section class="domanda-allNotifications" id = "domanda-allNotifications">  
+                {% for all_notifiy in notifications %}
+                    {% if all_notifiy.seen == 0 %}
+                        <div class="domanda-Notification-info wow bounceInLeft is_not_visited" data-wow-duration="1s" data-wow-delay=".25s">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    {% if all_notifiy.event_title == 'q' %}
+                                        <a href="{% url 'getquestion' all_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-question mr-2"></i>You posted a question : {{ all_notifiy.sub_notification_content }}</span>
+                                        </a>
+                                    {% elif all_notifiy.event_title == 'u' %}
+                                        <a href="{% url 'getquestion' all_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-question mr-2"></i>{{ all_notifiy.sub_notification_content }} has posted a new question</span>
+                                        </a>
+                                    {% elif all_notifiy.event_title == 'a' %}
+                                        <a href="{% url 'getquestion' all_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-comment-alt mr-2"></i> {{ all_notifiy.sub_notification_content }} commented on your question</span>
+                                        </a>
+                                    {% elif all_notifiy.event_title == 'f' %}
+                                        <a href="{% url 'userprofile' all_notifiy.notification_content %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-user-plus mr-2"></i> {{ all_notifiy.sub_notification_content }} started to follow you</span>
+                                        </a>
+                                    {% elif all_notifiy.event_title == 'm' %}
+                                        <a href="{% url 'getquestion' all_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-at"></i> {{ all_notifiy.sub_notification_content }} mentioned you in a comment</span>
+                                        </a>
+                                    {% endif %}
+                                </div>
+
+
+                                <div class="col-sm-2">
+                                    <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                        <span>{{ all_notifiy.date }}</span>
+                                        <br>
+                                        <span>{{ all_notifiy.time }}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% else %}
+
+                    <div class="domanda-Notification-info wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".25s">      
+                        <div class="row">
+                            <div class="col-sm-10">
+                                {% if all_notifiy.event_title == 'q' %}
+                                    <a href="{% url 'getquestion' all_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-question mr-2"></i>You posted a question : {{ all_notifiy.sub_notification_content }}</span>
+                                    </a>
+                                {% elif all_notifiy.event_title == 'u' %}
+                                    <a href="{% url 'getquestion' all_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-question mr-2"></i>{{ all_notifiy.sub_notification_content }} has posted a new question</span>
+                                    </a>
+                                {% elif all_notifiy.event_title == 'a' %}
+                                    <a href="{% url 'getquestion' all_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-comment-alt mr-2"></i> {{ all_notifiy.sub_notification_content }} commented on your question</span>
+                                    </a>
+                                {% elif all_notifiy.event_title == 'f' %}
+                                    <a href="{% url 'userprofile' all_notifiy.notification_content %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-user-plus mr-2"></i> {{ all_notifiy.sub_notification_content }} started to follow you</span>
+                                    </a>
+                                {% elif all_notifiy.event_title == 'm' %}
+                                    <a href="{% url 'getquestion' all_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-at"></i> {{ all_notifiy.sub_notification_content }} mentioned you in a comment</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+
+
+                            <div class="col-sm-2">
+                                <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                    <span>{{ all_notifiy.date }}</span>
+                                    <br>
+                                    <span>{{ all_notifiy.time }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% endif %}
+                {% endfor %}
+            </section>
+
+
+            <!-- Start Display Questions Only -->
+            <section class="domanda-allNotifications" id ="domanda-QNotifications">
+                {% for all_q_notifiy in N_q_list %}
+                    {% if all_q_notifiy.seen == 0 %}
+                        <div class="domanda-Notification-info wow bounceInLeft is_not_visited" data-wow-duration="1s" data-wow-delay=".25s">
+                            
+                            <div class="row">
+                                <div class="col-sm-10">
+                                   {% if all_q_notifiy.event_title == 'q' %}
+                                        <a href="{% url 'getquestion' all_q_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-question mr-2"></i>You posted a question : {{ all_q_notifiy.sub_notification_content }}</span> 
+                                        </a>
+                                    {% elif all_q_notifiy.event_title == 'u' %}
+                                        <a href="{% url 'getquestion' all_q_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-question mr-2"></i>{{ all_q_notifiy.sub_notification_content }} has posted a new question</span>
+                                        </a>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                        <span>{{ all_q_notifiy.date }}</span>
+                                        <br>
+                                        <span>{{ all_q_notifiy.time }}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% else %}
+                        <div class="domanda-Notification-info wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".25s">
+                            
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    {% if all_q_notifiy.event_title == 'q' %}
+                                        <a href="{% url 'getquestion' all_q_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-question mr-2"></i>You posted a question : {{ all_q_notifiy.sub_notification_content }}</span> 
+                                        </a>
+                                    {% elif all_q_notifiy.event_title == 'u' %}
+                                        <a href="{% url 'getquestion' all_q_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-question mr-2"></i>{{ all_q_notifiy.sub_notification_content }} has posted a new question</span>
+                                        </a>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                        <span>{{ all_q_notifiy.date }}</span>
+                                        <br>
+                                        <span>{{ all_q_notifiy.time }}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </section>
+            
+
+            <!-- Start Display Answers Only -->
+            <section class="domanda-allNotifications" id = "domanda-ANotifications">
+                {% for all_a_notifiy in N_a_list %}
+                    {% if all_a_notifiy.seen == 0 %}
+                        <div class="domanda-Notification-info wow bounceInLeft is_not_visited" data-wow-duration="1s" data-wow-delay=".25s">
+                            
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <a href="{% url 'getquestion' all_a_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-comment-alt mr-2"></i> {{ all_a_notifiy.sub_notification_content }} commented on your question</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                        <span>{{ all_a_notifiy.date }}</span>
+                                        <br>
+                                        <span>{{ all_a_notifiy.time }}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% else %}
+                        <div class="domanda-Notification-info wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".25s">
+                            
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <a href="{% url 'getquestion' all_a_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-comment-alt mr-2"></i> {{ all_a_notifiy.sub_notification_content }} commented on your question</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                        <span>{{ all_a_notifiy.date }}</span>
+                                        <br>
+                                        <span>{{ all_a_notifiy.time }}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </section>
+
+            
+            <!-- Start Display Followers Only -->
+            <section class="domanda-allNotifications" id = "domanda-FNotifications">
+                {% for all_f_notifiy in N_f_list %}
+                    {% if all_f_notifiy.seen == 0 %}
+                        <div class="domanda-Notification-info wow bounceInLeft is_not_visited" data-wow-duration="1s" data-wow-delay=".25s">
+                            
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <a href="{% url 'userprofile' all_f_notifiy.notification_content %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-user-plus mr-2"></i> {{ all_f_notifiy.sub_notification_content }} started to follow you</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                        <span>{{ all_f_notifiy.date }}</span>
+                                        <br>
+                                        <span>{{ all_f_notifiy.time }}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {% else %}
+                            <div class="domanda-Notification-info wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".25s">
+                                
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <a href="{% url 'userprofile' all_f_notifiy.notification_content %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                            <span><i class="fas fa-user-plus mr-2"></i> {{ all_f_notifiy.sub_notification_content }} started to follow you</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                            <span>{{ all_f_notifiy.date }}</span>
+                                            <br>
+                                            <span>{{ all_f_notifiy.time }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                    {% endif %}
+                {% endfor %}
+            </section>
+
+
+            <!-- Start Display Mentions Only -->
+            <section class="domanda-allNotifications" id = "domanda-MNotifications">
+                {% for all_m_notifiy in N_m_list %}
+                    {% if all_m_notifiy.seen == 0 %}
+                        <div class="domanda-Notification-info wow bounceInLeft is_not_visited" data-wow-duration="1s" data-wow-delay=".25s">
+                            
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <a href="{% url 'getquestion' all_m_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-at"></i> {{ all_m_notifiy.sub_notification_content }} mentioned you in a comment</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                        <span>{{ all_m_notifiy.date }}</span>
+                                        <br>
+                                        <span>{{ all_m_notifiy.time }}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% else %}
+                        <div class="domanda-Notification-info wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".25s">
+                            
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <a href="{% url 'getquestion' all_m_notifiy.event_number %}" class="domanda-Notification-infoContent nav-link mt-3">
+                                        <span><i class="fas fa-at"></i> {{ all_m_notifiy.sub_notification_content }} mentioned you in a comment</span>
+                                    </a>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <p class="domanda-Notification-infoTime text-right font-weight-bold">
+                                        <span>{{ all_m_notifiy.date }}</span>
+                                        <br>
+                                        <span>{{ all_m_notifiy.time }}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </section>
+       </div>
+        
+    </div>
+</section>
+
+<!-- End Notification Page Content -->
+
+{% endblock %}

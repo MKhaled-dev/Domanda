@@ -1,0 +1,399 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<section class="domanda-answers-content">
+    <div class="container">
+
+        <!-- Start Question Content -->
+         <div class="row">  
+            <div class="col">
+
+                <h2 style="width:98.5%;font-weight: bold" class="domanda-answers-question-title">{{ question.title }}</h2>
+
+                <!-- Start Delete and Turnoff Comments of current question -->
+                {% if user.is_authenticated %}
+                <section class="domanda-answers-content-makeOperation">
+                    <i class="fas fa-ellipsis-h" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="-162 , 7"></i>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                        <form action="{% url 'savequestion' question.question_id %}" method="post" id = "domanda-savequestion-form">
+                            {% csrf_token %}
+
+                            <!-- Check if user make save for question or not -->
+                            {% if isSaved == True %}
+                                <i class="far fa-star" style="margin-left: 10px;margin-top: 10px"></i>
+                                <input class="btn text-left d-inline" type="submit" value="Unsave" style="padding-left:0;margin-top: -7px;background-color:transparent" />
+                            {% else %}
+                                <i class="fas fa-star" style="margin-left: 10px;margin-top: 10px"></i>
+                                <input class="btn text-left d-inline" type="submit" value="Save" style="padding-left: 2px;margin-top: -7px;background-color:transparent" />
+                            {% endif %}
+                        </form>
+
+                        <!-- Check if question comments is turn off OR on -->
+                        {% if question.username.username == user.username %}
+                            {% if question.turnoffcomment == 0 %}
+                                <a class="dropdown-item" href="{% url 'turnOffAnswers' question.question_id %}"><i class="fas fa-comment-slash mr-1" style="margin-left: -14px"></i>Turn off comments</a>
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'turnOffAnswers' question.question_id %}"><i class="fas fa-comment mr-1" style="margin-left: -14px"></i>Turn on comments</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{% url 'deletequestion' question.question_id %}"><i class="fas fa-trash-alt mr-2" style="margin-left: -10px"></i>Delete question</a>
+                            <a class="dropdown-item editQuestion" href="#"><i class="fas fa-edit mr-2" style="margin-left: -10px"></i>Edit question</a>
+                        {% endif %}
+
+                        {% if question.username.username != user.username %}
+                            <a class="dropdown-item reportQuestion" href="#"><i class="fas fa-flag mr-2" style="margin-left: -10px"></i>Report</a>
+                        {% endif %}
+                    </div>
+                </section>
+                {% endif %}
+
+                <div class="domanda-answers-questionContent">
+                   
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <p class="lead domanda-answers-question-content" style="font-weight:bold">{{ question.content }}</p>
+                            {% if questionimagescount == 1 %}
+                                <div class="domanda-answers-questionContent-image active d-inline-block mr-4" style="
+                                background: url( {{firstQuestionImage.image.url}} );
+                                background-position: center center;
+                                background-size: cover;
+                                background-repeat: no-repeat
+                                " title="Open"></div>
+
+                            {% elif questionimagescount > 1 %}
+
+                                <div class="domanda-answers-questionContent-image d-inline-block mr-4" style="
+                                background: url( {{firstQuestionImage.image.url}} );
+                                background-position: center center;
+                                background-size: cover;
+                                background-repeat: no-repeat
+                                " title="Open"></div>
+
+                            {% endif %}
+                            <ul class="list-unstyled">
+                                <a href="{% url 'searchbycategory' categories.categoryname %}"><li>{{ categories.categoryname }}</li></a>
+                            </ul>
+                            <span class="d-block">
+                                Asked on {{ question.date }}  <br> at {{ question.time }} by  
+                                {% if question.username.username != null %}
+                                    <a href="{% url 'userprofile'  question.username.username %}" style="color: #4ab5fd">{{ question.username.username }} <span style="visibility: hidden;">.</span> </a>
+                                    <div class="card card_hover_link d-none" style="width: 18rem;padding: 0">
+                                        <div class="card-img" style="background: url( {{question.username.profile_image.url}} );
+                                        background-position: center center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;"></div>
+                                        
+                                        <div class="card-body" style="background-color: #0D1A1D;color:#fff">
+                                            <h5 class="card-title"><i class="fas fa-pencil-alt mr-3" style="font-size: 20px"></i>{{ question.username.username }}</h5>
+
+                                            <!-- Display User Career -->
+                                            {% if question.username.career_type != '' %}
+                                                <p class="card-text"><i class="fas fa-briefcase mr-3" style="font-size: 20px"></i>{{ question.username.career_type }} at <br> <span class="d-inline-block" style="margin-left: 35px">{{ question.username.career_value }}</span></p>
+                                            {% endif %}
+                                
+                                            <!-- Display User Location -->
+                                            {% if question.username.country != '' %}
+                                                <p class="card-text"><i class="fas fa-map-marker-alt mr-3" style="font-size: 20px"></i>{{ question.username.country }}</p>
+                                            {% endif %}
+
+                                            <!-- Display User Followers -->
+                                            {% if num_of_followers != 0 %}
+                                                <p class="card-text">
+                                                    <img src="{% static 'QuestionAndAnswer/images/Follow_20px.png' %}" class="mr-3" /> Followed by {{ num_of_followers }} people
+                                                </p>
+                                            {% endif %}
+
+                                            {% if user.is_authenticated and question.username.username != user.username %}
+                                                {% if isFollowing == False %}
+                                                    <a href="{% url 'followuser' question.username.username user.username %}" class="btn btn-block"><i class="fas fa-plus mr-2"></i>Follow</a>
+                                                {% else %}
+                                                    <a href="{% url 'unfollow' question.username.username user.username %}" class="btn btn-block"><i class="fas fa-check mr-2"></i>Following</a>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <span class="text-capitalize">deleted user</span>
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        <div class="col-sm-1 col-offset-sm-1" style="margin: auto 0">
+                            <!-- Start Question Voting -->
+                            {% if user.is_authenticated %}
+                                <div class="domanda-answers-questionContent-vote text-center">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <a href="{% url 'questionvote' question.question_id 1 %}"><i class="fas fa-sort-up" data-toggle="tooltip" data-placement="top" title="Vote up"></i></a>
+                                        <span class="domanda-answers-questionContent-voteNumber d-block">{{ question.vote }}</span>
+                                        <a href="{% url 'questionvote' question.question_id 0 %}"><i class="fas fa-sort-down" data-toggle="tooltip" data-placement="bottom" title="Vote down"></i></a>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Check if user make save for question or not -->
+                    {% if isSaved == True %}
+                        <i class="fas fa-star fa-3x" data-toggle="tooltip" data-placement="top" title="You saved this question" style="position:absolute;top:18px;right: -66px;color:#1abc9c;font-size:40px"></i>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+
+
+        <!-- Start Answers content -->
+        <div class="row">
+            <div class="col">
+
+               <h3 class="h2" style="width: 99%"><span>{{ answers | length }}</span> Answers</h3>
+                <!-- Start Answerd Questions -->
+                <div class="row">
+                    <div class="col">
+                        <section class="domanda-answers-add-newanswer">
+                            <!-- Start Dispaly All Answers -->
+                            {% for answer, liked in answers %}
+                            <div class="domanda-answers-answeredQuestions">
+                                <div class="row">
+                                    <div class="col-sm-10 mt-2">
+                                        <p style="margin-bottom:0" class="domanda-answers-answerContent">{{ answer.content | safe }}</p>
+                                        <p class="text-lead mt-3" style="margin: 0;font-size:12px">Answered on {{ answer.date }} at {{ answer.time }} by {{ answer.username.username }}</p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <ul class="list-unstyled mt-2 text-right answers-operations">
+                                            <!-- Display Like and Comment Icon if user make login -->
+                                            {% if user.is_authenticated %}
+                                                <form class="d-inline" method="POST" id = "liked_form">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" value="{{ answer.answer_id }}" name="answerID" />
+
+													{%if liked %}
+                                                        <li style="color:#D03939" data-toggle="tooltip" data-placement="top" title="{{ answer.likes }}" class="domanda-makeLike-icon" data-answerID = "{{ answer.answer_id }}"><i class="fas fa-heart"></i></li>
+													{% else %}
+													    <li data-toggle="tooltip" data-placement="top" title="{{ answer.likes }}" class="domanda-makeLike-icon" data-answerID = "{{ answer.answer_id }}"><i class="fas fa-heart"></i></li>
+													{% endif %}
+                                                </form>
+                                                
+                                                <li data-toggle="tooltip" data-placement="top" title="Add comment" class="domanda-addComment-icon" data-answerID = "{{ answer.answer_id }}"><i class="fas fa-comment-alt"></i></li>
+                                            {% endif %}
+
+                                            <li data-toggle="tooltip" data-placement="top" title="Show all comments" class="domanda-displayComments-icon" data-DanswerID = "{{ answer.answer_id }}"><i class="fas fa-caret-down"></i></li>
+                                        </ul>
+
+                                        <!-- Start Make form form Best Answer -->
+                                        <form method="POST" action="" class="domanda-answers-bestanswer-form" id="domanda-answers-bestanswer-form-{{answer.answer_id}}">
+                                            {% csrf_token %}
+                                            
+                                            {% if user.is_authenticated and question.username.username == user.username %}
+                                                {% if answer.bestanswer == 1 %}
+                                                    <a href="{% url 'bestAnswer' answer.answer_id %}">
+                                                        <i class="fas fa-check fa-2x click-bestAnswer" id="{{ answer.answer_id }}" data-toggle="tooltip" data-placement="top" title="The question owner accepted this as the best answer"" style="color: #1abc9c"></i>
+                                                    </a>
+                                                {% elif answer.bestanswer == 0 and question.username.username == user.username %}
+                                                    <a href="{% url 'bestAnswer' answer.answer_id %}">
+                                                        <i class="fas fa-check fa-2x click-bestAnswer" id="{{ answer.answer_id }}" data-toggle="tooltip" data-placement="top" title="Mark as best answer"></i>
+                                                    </a>
+                                                {% endif %}
+
+                                            {% else %}
+                                                {% if answer.bestanswer == 1 %}
+                                                    <i class="fas fa-check fa-2x" id="{{ answer.answer_id }}" data-toggle="tooltip" data-placement="top" title="The question owner accepted this as the best answer" style="color: #1abc9c"></i>
+                                                {% elif answer.bestanswer == 0 and question.username.username == user.username %}
+                                                    <i class="fas fa-check fa-2x" id="{{ answer.answer_id }}" data-toggle="tooltip" data-placement="top" title="Mark as best answer"></i>
+                                                {% endif %}
+
+                                            {% endif %}
+                                            
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if user.is_authenticated %}
+                                <!-- Start Add Comment Input -->
+                                <form id = "domanda-addComment" data-addComment-answerID = "{{ answer.answer_id }}" action="{% url 'addNewComment' user.username %}" method="POST" class="form-group domanda-answers-addComment-form d-none">
+                                    {% csrf_token %}
+                                    <input type="text" name="add_comment" class="form-control" placeholder="add a comment" required />
+                                    <input type="hidden" name="answer_id" />
+                                </form>
+                            {% endif %}
+
+
+                            <!-- Start Display Comments with specific answer id -->
+                            {% for comment in allComments %}
+                                {% if answer.answer_id == comment.answer.answer_id %}
+                                       <!-- Start Answerd Questions -->
+                                       <div class="row mt-0">
+                                            <div class="col">
+                                                <div class="domanda-answers-userAnswered d-none" data-id = "com-{{ answer.answer_id }}">
+                                                    {{ comment.comment_content }}
+                                                    
+                                                    <div class="d-inline position-absolute" style = "right: 2%">
+                                                        Commented on {{ comment.comment_date }} at <br>
+                                                        <span class="text-right d-block">{{ comment.comment_time }} by {{ comment.comment_user.username }} </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        {% endfor %}
+
+                        <!-- End Dispaly All Answes -->
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Start Add Answer -->
+        <div class="row">
+            <div class="col">
+                {% if user.is_authenticated  and question.turnoffcomment == 0 %}
+                <div class="domanda-answers-addComment">
+                        <p class="text-capitalize" style="margin-top:100px">your answer</p>
+                        
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-bold"></i></li>
+                            <li><i class="fas fa-italic"></i></li>
+                            <li><i class="fas fa-link"></i></li>
+                            <li><label for="id_image" style="cursor: pointer;"><i class="fas fa-image"></i></label></li>
+                        </ul>
+                        <form id="domanda-answer" action="{% url 'addanswer' user.username question.question_id %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <textarea id = "textarea-id" name="answer-content" required></textarea>
+                            </div>
+                            <input type="submit" name="answer-btn" value="Post Your Answer"  />
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Start Display Rating Section -->
+{% if active_rating == True%}
+    <div class="domanda-answers-rating-container">
+        <section class="domanda-answers-rating">
+            <h4 class="text-center mt-3">We noticed that you are interested with  "{{ categories.categoryname }}"</h4>
+            <h4 class="text-center">Can you choose the degree of your interest so that</h4>
+            <h4 class="text-center">We can recommend questions for you?</h4>
+    
+            <div class="domanda-answers-rating-values text-center">
+                <form method="POST" action="{% url 'addrating' %}">
+                    {% csrf_token %}
+                    <span data-ratingValue = 1>1</span>
+                    <span data-ratingValue = 2>2</span>
+                    <span data-ratingValue = 3>3</span>
+                    <span data-ratingValue = 4>4</span>
+                    <span data-ratingValue = 5>5</span>
+                    <span data-ratingValue = 6>6</span>
+                    <span data-ratingValue = 7>7</span>
+                    <span data-ratingValue = 8>8</span>
+                    <span data-ratingValue = 9>9</span>
+                    <span data-ratingValue = 10>10</span>
+
+                    <input type="text" name="rating_value" class="d-none" />
+                    <input type="text" name="category_rating" value="{{ categories.categoryname }}" class="d-none" />
+                </form>
+            </div>
+    
+        </section>
+    </div>
+{% endif %}
+
+
+<!-- Start Display Questio Image with zoom-in  -->
+<section class="domanda-display-questionImage">
+    <i class="fas fa-times" style="z-index: 9999;"></i>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="width: 80%;height: 1000px;margin: 50px auto 0">
+                <img src="{{ firstQuestionImage.image.url }}" style="width: 100%" class="d-block w-100" />
+            </div>
+
+            {% for image_q in questionImages %}
+            <div class="carousel-item" style="width: 80%;height: 1000px;margin: 50px auto 0">
+                <img src="{{ image_q.image.url }}" style="width: 100%" class="d-block w-100" />
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if questionimagescount > 1 %}
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        {% endif %}
+    </div>
+</section>
+
+
+<!-- Start Display Report Section -->
+<section class="domanda-answers-makeReport d-none">
+    <div class="domanda-answers-makeReport-content">
+        <form method="POST" action="" class="form-group" style="margin: 0">
+            <div class="form-group">
+                <select class="custom-select domanda-answers-makeReport-reportType">
+                    <option value="question">Report question</option>
+                    <option value="answer">Report answer</option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <select class="custom-select domanda-answers-makeReport-selectedAnswer d-none">
+                    {% for answer in allAnswers %}
+                        <option value="{{ answer.answer_id }}">{{ answer.answer_content | safe }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <h3 class="mb-3">What is the problem?</h3>
+            <div class="form-group">
+                <textarea type="text" name="report-content" class="form-control" required></textarea>
+            </div>
+            
+            <div class="domanda-answers-makeReport-controls">
+                <input type="submit" value="Submit" class="btn mr-2" />
+                <button type="button" class="btn btn-danger">Cancel</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<!-- Start Display Edit Question Section -->
+<section class="domanda-answer-editQuestion d-none">
+    <div class="domanda-answer-editQuestion-content">
+        <form action="{% url 'editquestion' question.question_id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="questionTitle" class="text-capitalize font-weight-bold">title</label>
+                <input type="text" name="question-edit-title" class="form-control" id="questionTitle" value="{{ question.title }}" required />
+            </div>
+            <div class="form-group">
+                <label for="questionBody" class="text-capitalize font-weight-bold d-block mt-4">body</label>
+                <textarea name="question-edit-body" class="pl-2" id="questionBody" required>{{ question.content }}</textarea>
+            </div>
+            <div class="domanda-answer-editQuestion-controls">
+                <input type="submit" name="question-submit" value="Save changes" class="btn btn-primary mr-2" />
+                <button type="button" class="btn btn-danger domanda-answer-editQuestion-cancel">cancel</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

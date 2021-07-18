@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<!-- Start Help Page Content -->
+
+<section class="domanda-question-content">
+        <div class="container">
+            <h2 class="text-center mb-3">Send Your Feedback</h2>
+            <div class="row">
+                <div class="col">
+    
+                    <!-- Start Send  Form -->
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="questionTitle" class="text-capitalize font-weight-bold">title</label>
+                            <input type="text" name="question-title" class="form-control" id="questionTitle" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="questionBody" class="text-capitalize font-weight-bold">content</label>
+                            <textarea name="question-body" class="" id="questionBody"></textarea>
+                        </div>
+    
+                        <input type="submit" name="question-submit" value="Submit" class="btn text-center" />
+                    </form>
+    
+                    </div>
+                </div>
+            </div>
+    </section>
+
+<!-- End Help Page Content -->
+
+{% endblock %}

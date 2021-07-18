@@ -1,0 +1,122 @@
+/*Start Navbar*/
+.domanda-navbar{border-bottom: 5px solid #e74c3c;}
+
+.domanda-navbar .domanda-search form input{border: 1px solid #e74c3c;}
+
+.domanda-navbar .domanda-home-notify-userContent .domanda-home-notify-userContent-img{border: 3px solid #e74c3c;}
+
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu{border: 1px solid #e74c3c}
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu::before{border-color: transparent transparent #e74c3c  transparent;}
+
+/*Start Profile header*/
+.domanda-profile-notify,
+.domanda-home-notify{
+    border-bottom: 5px solid #e74c3c;
+}
+
+
+/*Start Profile Content*/
+.domanda-profile-content .domanda-profile-img{border: 4px solid #e74c3c;}
+
+.domanda-profile-content input.border-light,
+.domanda-profile-content textarea.border-light{border-color: #e74c3c !important}
+
+.domanda-profile-content .domanda-profile-career input[type="radio"].active-btn{border: 1px solid #e74c3c}
+
+.domanda-profile-content .domanda-profile-displayedCareer .domanda-profile-displayedCareer-comma{border: 1px solid #e74c3c}
+
+.domanda-profile-content .domanda-profile-rating,
+.domanda-profile-content .domanda-profile-rating-values input[type="number"]{border: 1px solid #e74c3c}
+
+.domanda-profile-content .domanda-profile-content-Achievements{border: 1px solid #e74c3c;}
+
+.domanda-profile-content .domanda-profile-rating input[type="number"]{border: 1px solid #e74c3c}
+
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails{border: 4px solid #e74c3c;}
+.domanda-profile-allContents .domanda-profile-postedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-left ul li{border: 1px solid #e74c3c;}
+
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails{border: 4px solid #e74c3c;}
+.domanda-profile-allContents .domanda-profile-savedQ .domanda-profile-questionDetails .domanda-profile-questionDetails-left ul li{border: 1px solid #e74c3c;}
+
+
+/*Start All Profiles*/
+.domanda-allProfiles .domanda-allProfiles-profileContent{border: 4px solid #e74c3c}
+.domanda-allProfiles .domanda-allProfiles-profileContent a{border: 1px solid #e74c3c}
+
+.domanda-allProfiles .domanda-allProfiles-profileContent a:hover{background-color: #e74c3c}
+
+
+/*Start Home*/
+.domanda-home-importantQ ul li,
+.domanda-Notification-displayType ul li,
+.domanda-Notification-profile-displayType ul li{border: 1px solid #e74c3c;}
+
+.domanda-Notification-displayType ul li.active,
+.domanda-Notification-profile-displayType ul li.active{background-color: #e74c3c;}
+
+.domanda-home-content .domanda-home-askQ{border: 1px solid #363434;}
+
+.domanda-home-importantQ .domanda-home-importantQ-category ul li:hover{background-color: #e74c3c}
+
+.domanda-home-content .domanda-home-questionDetails{border: 4px solid #e74c3c;}
+
+.domanda-home-content .domanda-home-questionDetails-left ul li{border: 1px solid #e74c3c;}
+
+.domanda-home-content .domanda-home-questionsControl a{ border: 1px solid #e74c3c;}
+
+/*Start Question*/
+.domanda-question-content input[type="text"]{border: 1px solid #e74c3c;}
+
+.domanda-question-content textarea{border-color: #e74c3c;}
+
+.domanda-question-content input[type="submit"]{border: 1px solid #e74c3c;}
+
+
+/*Start Answer*/
+.domanda-answers-content h2{border-bottom: 2px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-questionContent{border: 1px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-questionContent span .card{border: 2px solid #e74c3c}
+
+.domanda-answers-content .domanda-answers-questionContent span .card::before{border-color: transparent #e74c3c transparent transparent ;}
+
+.domanda-answers-content .domanda-answers-questionContent span .card .card-body a{border: 1px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-questionContent ul li{border: 1px solid #e74c3c;}
+
+.domanda-answers-content h3{border-top: 2px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu{border-color: #e74c3c}
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu::before{border-color: transparent transparent #e74c3c transparent;}
+
+.domanda-answers-content .domanda-answers-add-newanswer .domanda-answers-addComment-form input{border-bottom: 2px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-answeredQuestions{border: 1px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-userAnswered{border: 1px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-addComment .domanda-answers-turnoffcomments{border: 1px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-addComment input[type="submit"]{border: 1px solid #e74c3c;}
+
+.domanda-answers-content .domanda-answers-addComment textarea{border-color:#e74c3c;}
+
+
+
+/*Start Notification*/
+.domanda-Notification-Content .domanda-Notification-info{border: 1px solid #e74c3c;}
+.domanda-Notification-Content .domanda-allNotifications-type .domanda-allNotifications .is_not_visited{background-color: #e74c3c;color: #fff}
+.domanda-Notification-Content .domanda-allNotifications-type .domanda-allNotifications .is_not_visited a{color: #fff}
+.domanda-Notification-Content .domanda-allNotifications-type .domanda-allNotifications .is_not_visited a span{color: #fff !important}
+
+
+/*Start Notification*/
+.domanda-display-notification{border: 1px solid #e74c3c;}
+
+
+/*Start Change site theme*/
+.domanda-change-theme{border: 1px solid #e74c3c;}
+
+.domanda-change-theme div{border: 1px solid #e74c3c;}
+

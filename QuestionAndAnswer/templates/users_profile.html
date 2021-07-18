@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'user_control.html' %}
+
+<!-- Start Content of Profile Page -->
+
+<section class="domanda-profile-content">
+    <div class="container">
+
+        <!-- Start Display Achievements -->
+        <section class="domanda-profile-content-Achievements text-center">
+            <h3 class="text-capitalize mb-4">all achievements</h3>
+            <ul class="list-unstyled text-capitalize">
+                {% for achievement_val in userAchievements %}
+                    <li>{{ achievement_val.achievement }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <form method="post">
+
+            {% csrf_token %}
+            <!-- Display Name & Full name & Location -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="domanda-profile-img" style="background: url( {{user_info.profile_image.url}} );
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover">
+                    </div>
+                </div>
+                <div class="col-md-6 offset-md-2">
+                    <div class="domanda-profile-info">
+                        <div class="form-group">
+                            <label for="userName" class="text-capitalize">display name (username)</label>
+                            <input type="text" name="profile-username" class="form-control border border-light" id="userName" value = "{{user_info.username}}" readonly  />
+                        </div>
+                        <div class="form-group">
+                            <label for="fullname" class="text-capitalize">full name</label>
+                            <input type="text" name="profile-fullname" class="form-control border border-light" id="fullname" value = "{{user_info.firstName}} {{user_info.lastName}}" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="text-capitalize">email</label>
+                            <input type="email" name="profile-email" class="form-control border border-light" id="email" value = "{{user_info.email}}" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="location" class="text-capitalize">country</label>
+                            <input type="text" name="profile-location" class="form-control border border-light" id="location" value = "{{user_info.country}}" readonly />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Follow-->
+                {% if user.is_authenticated and user_info.username != user.username %}
+                    {% if isFollowing == False %}
+                        <span class="btn text-capitalize domanda-profile-follow">
+                            <i class="fas fa-plus mr-2"></i>
+                            <a href="{% url 'followuser' user_info.username user.username %}" style="color:#fff;text-decoration:none">follow</a>
+                        </span>
+                    {% else %}
+                        <span class="btn text-capitalize domanda-profile-follow">
+                            <i class="fas fa-check"></i>
+                            <a href="{% url 'unfollow' user_info.username user.username %}" style="color:#fff;text-decoration:none">following</a>
+                        </span>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+
+            <!-- About User information -->
+            <div class="row">
+                <div class="col">
+                    <div class="domanda-profile-about">
+                        <h3 class="text-capitalize" style="margin: 100px 0 30px">about me</h3>
+                        <textarea class="form-control border border-light" name="profile-aboutme" readonly>{{user_info.aboutme}}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- web presence for user-->
+            <h3 class="text-capitalize" style="margin: 0 0 30px">web presence</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="domanda-profile-links">
+                        <span class="text-capitalize">website link</span>
+                        <input type="text" name="profile-websitelink" class="form-control border border-light   " value = "{{user_info.WebsiteLink}}" readonly />
+                        <i class="fas fa-link"></i>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="domanda-profile-links">
+                        <span class="text-capitalize">twitter link or username</span>
+                        <input type="text" name="profile-twitterlink" class="form-control border border-light" value = "{{user_info.TwitterLink}}" readonly />
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="domanda-profile-links">
+                        <span class="text-capitalize">github link or username</span>
+                        <input type="text" name="profile-github" class="form-control border border-light" value = "{{user_info.GitHubLink}}" readonly />
+                        <i class="fab fa-github"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Career for user -->
+            <h3 class="text-capitalize d-inline-block" style="margin-top:40px;margin-bottom:0">career</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="domanda-profile-career" style="margin-top:30px">
+
+                        {% if user_info.workORschool == "Work" %}
+                            <input type="radio" name="profile-career" data-value="Work" value="Work" class="active-btn" checked readonly/>
+                        {% else %}
+                            <input type="radio" name="profile-career" data-value="School" value="School" class="active-btn" checked readonly />
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="domanda-profile-displayedCareer">
+                        <span class="text-capitalize d-block">degree or concentration and school name</span>
+                        <input type="text" class="border border-light" value = "{{user_info.career_type}}" name="profile-career-type" readonly />
+                        <span class="domanda-profile-displayedCareer-comma border border-light text-center d-inline-block">&#44;</span>
+                        <input type="text" class="border border-light" value = "{{user_info.career_value}}" name="profile-career-value" readonly  />
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+<!-- End Content of Profile Page -->
+
+{% endblock %}

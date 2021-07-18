@@ -1,0 +1,97 @@
+body.body-background-img-color{
+    background-color: #F8F8FF
+}
+
+.domanda-navbar{background-color: #F8F8FF}
+
+.domanda-navbar .navbar-brand{
+    width: 200px;
+    height: 110px;
+    background: url('../../images/lightModeImages/domanda_logo-01.png') no-repeat center;
+    background-size: cover
+}
+.domanda-navbar .domanda-search form input{background-color: #F8F8FF; color: #858A91}
+.domanda-navbar .domanda-search form input::placeholder{color: #858A91;}
+.domanda-navbar .domanda-search form button i{color: #858A91}
+.domanda-navbar .domanda-search form select{color: #858A91;}
+.domanda-navbar .domanda-search .domanda-search-result{background-color: #FFF;color: #09191C}
+.domanda-navbar .domanda-search .domanda-search-result ul li a{color: #09191C}
+.domanda-navbar .domanda-search .domanda-search-result ul li a:hover{background-color: rgba(0, 0, 0, .1)}
+
+.domanda-profile-notify,
+.domanda-home-notify{background-color: #F8F8FF}
+
+.domanda-profile-notify ul li:not(.img-prof),
+.domanda-home-notify ul li{border-right: 1px solid #09191C;margin-bottom: -5px}
+
+.domanda-home-notify ul li:first-of-type{border-left: 1px solid #09191C;}
+
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu{background-color: #F8F8FF;color: #09191C;}
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu .dropdown-divider{border-color: rgba(9, 25, 28, .5)}
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu i,
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu a{color: #09191C}
+.domanda-navbar .domanda-home-notify-userContent .dropdown-menu a:hover{color: #09191C;background: rgba(0, 0, 0, .1)}
+
+.domanda-navbar .domanda-home-notify-userContent .domanda-switch-mode input[type = "checkbox"]:checked{background-color: #ccc}
+
+.domanda-home-notify ul li a{color: #09191C;}
+
+.domanda-home-content .domanda-home-questionDetails{background-color: #F8F8FF}
+.domanda-home-content .domanda-home-heading{color: #09191C;}
+.domanda-home-content .domanda-home-questionDetails-questionContent{color: #858A91;}
+.domanda-home-content .domanda-home-questionDetails-right,
+.domanda-home-content .domanda-home-questionDetails-left span{color: #858A91;font-weight: bold}
+
+
+.domanda-answers-content .domanda-answers-questionContent,
+.domanda-answers-content .domanda-answers-answeredQuestions{
+    box-shadow: 0 0 60px 2px rgba(0,0,0,.2);
+    background-color: #F8F8FF;
+    color: #09191C;
+}
+
+.domanda-answers-content h3{color: #09191C;}
+.domanda-answers-content .domanda-answers-questionContent span:first-of-type{color: #09191C}
+.domanda-answers-content .domanda-answers-questionContent .domanda-answers-questionContent-vote i{color: #09191C}
+.domanda-answers-content .domanda-answers-questionContent{color: #858A91}
+.domanda-answers-content .domanda-answers-question-title{color: #09191C}
+.domanda-answers-content .domanda-answers-content-makeOperation #dropdownMenuOffset{color: #09191C}
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu{background-color: #F8F8FF}
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu input,
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu a{color: #09191C;margin-bottom: 5px}
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu a:hover{background-color: rgba(0,0,0, .1)}
+.domanda-answers-content .domanda-answers-content-makeOperation .dropdown-menu i{color: #09191C}
+.domanda-answers-content .domanda-answers-answeredQuestions ul li{color: #09191C;}     
+.domanda-answers-content .domanda-answers-userAnswered{background-color: #F8F8FF;color: #09191C} 
+.domanda-answers-content .domanda-answers-answeredQuestions .domanda-answers-bestanswer-form i{color: #09191C}
+.domanda-answers-content .domanda-answers-addComment p{color: #09191C}
+.domanda-answers-content .domanda-answers-addComment ul li{color: #09191C;}
+.domanda-answers-content .domanda-answers-addComment textarea{background-color: #F8F8FF;color: #09191C;}
+
+.domanda-profile-content .domanda-profile-info input,
+.domanda-profile-content .domanda-profile-about textarea,
+.domanda-profile-content .domanda-profile-links input,
+.domanda-profile-content .domanda-profile-displayedCareer input,
+.domanda-profile-content .domanda-profile-displayedCareer .domanda-profile-displayedCareer-comma,
+.domanda-profile-content .domanda-profile-rating,
+.domanda-profile-content .domanda-profile-rating-values input{background-color: #F8F8FF;color: #09191C;}
+
+.domanda-profile-about ul li i{color: #09191C}
+
+.domanda-profile-content .domanda-profile-links i{color: #09191C}
+.domanda-profile-content .domanda-profile-career input[type="radio"]{background-color: #F8F8FF;border: 1px solid #09191C}
+.domanda-profile-content .domanda-profile-actions a{background-color: firebrick;color: #fff}
+
+.domanda-Notification-Content .domanda-Notification-info .domanda-Notification-infoContent{color: #09191C;font-weight: bold}
+.domanda-Notification-Content .domanda-Notification-info p{color: #09191C}
+.domanda-Notification-Content .domanda-Notification-info.is_not_visited .domanda-Notification-infoTime{color: #FFF}
+
+.domanda-question-content h2,
+.domanda-question-content label,
+.domanda-question-content input[type="text"],
+.domanda-question-content textarea{color: #09191C;}
+
+.domanda-question-content input[type="text"],
+.domanda-question-content textarea{background-color: #F8F8FF;box-shadow: 0 10px 40px 1px rgba(0,0,0,.2)}
+
+.domanda-question-content ul li{color: #09191C;}
